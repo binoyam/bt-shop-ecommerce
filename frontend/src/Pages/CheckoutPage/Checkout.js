@@ -2,7 +2,14 @@ import "./Checkout.css";
 import DeleteIcon from "../../Assets/Images/remove-item-icon.svg";
 import OrderSummary from "../../components/Checkout-OrderSummary/OrderSummary";
 
-function Checkout({ cartItems, removeFromCart, customerData, isLoggedIn, toggleUserPopup, handleCustomerOrder }) {
+function Checkout({
+  cartItems,
+  removeFromCart,
+  customerData,
+  isLoggedIn,
+  toggleUserPopup,
+  handleCustomerOrder,
+}) {
   // console.log(customerData);
   const TAX_RATE = 0.15;
   const calculateTotal = () => {
@@ -15,15 +22,17 @@ function Checkout({ cartItems, removeFromCart, customerData, isLoggedIn, toggleU
   return (
     <div className="checkout-page">
       <div className="checkout-header">
-        <div className="customer_info_order">
-          <p className="checkout-header-text">Order Info.</p>
-          <p>
-            Customer Name: <span>{customerData?.customerName}</span>
-          </p>
-          <p>
-            Customer Id: <span>{customerData?.customerId}</span>
-          </p>
-        </div>
+        {isLoggedIn && (
+          <div className="customer_info_order">
+            <p className="checkout-header-text">Order Info.</p>
+            <p>
+              Customer Name: <span>{customerData?.customerName}</span>
+            </p>
+            <p>
+              Customer Id: <span>{customerData?.customerId}</span>
+            </p>
+          </div>
+        )}
         <div className="current-total-div">
           <p className="current-total-pre">Total (before tax): </p>
           <span className="current-total">${calculateTotal().toFixed(2)}</span>

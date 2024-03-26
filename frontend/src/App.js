@@ -244,7 +244,6 @@ function App() {
               <PaymentPage
                 isLoggedIn={isLoggedIn}
                 customerData={customerData}
-                products={products}
                 orderedItems={orderedItems}
                 cartItems={cartItems}
               />
@@ -253,7 +252,7 @@ function App() {
 
           <Route path="/about" element={<About />} />
 
-          <Route path="/contact" element={<Contact customerData={customerData} />} />
+          <Route path="/contact" element={<Contact />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>

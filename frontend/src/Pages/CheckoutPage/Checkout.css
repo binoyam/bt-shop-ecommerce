@@ -15,15 +15,19 @@
   font-size: 16px;
   font-weight: 700;
 }
-.customer_info_order{
+.customer_info_order {
   color: #000000;
 }
-.customer_info_order span{
+.customer_info_order span {
   color: #ed9121;
 }
 
 .checkout-header-text {
-  display: block;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #ed9121;
 }
 .checkout-amount {
   color: cadetblue;
@@ -131,4 +135,16 @@
 }
 .chk-out.item-remove-btn:active {
   scale: 2;
+}
+@media only screen and (max-width: 760px) {
+  .chk-out.cart-items-list {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+  .checkout-header{
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }

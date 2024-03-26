@@ -7,13 +7,7 @@ import CreditCardForm from "../../components/PaymentForms/CreditCardForm";
 import PayPalForm from "../../components/PaymentForms/PayPalForm";
 import BitcoinForm from "../../components/PaymentForms/BitcoinForm";
 
-function PaymentPage({
-  cartItems,
-  customerData,
-  isLoggedIn,
-  orderedItems,
-  products,
-}) {
+function PaymentPage({ cartItems, customerData, isLoggedIn, orderedItems }) {
   const [selectedPayMethod, setSelectedPayMethod] = useState("creditcard");
   console.log(orderedItems);
   // const TAX_RATE = 0.15;
