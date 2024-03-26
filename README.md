@@ -7,7 +7,7 @@
 - git clone https://github.com/binoyam/bt-shop-ecommerce.git
 - cd frontend
 - npm install
-- [open browser](localhost:3000)
+[open browser](http://localhost:3000)
 
 * (step 2)
 - cd ../backend
