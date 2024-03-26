@@ -1,0 +1,134 @@
+.checkout-page {
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  padding: 20px 20px 200px;
+  position: relative; /* for order summary */
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #ffffff;
+}
+/* CHECKOUT HEADER*/
+.checkout-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+}
+.customer_info_order{
+  color: #000000;
+}
+.customer_info_order span{
+  color: #ed9121;
+}
+
+.checkout-header-text {
+  display: block;
+}
+.checkout-amount {
+  color: cadetblue;
+}
+.current-total-pre {
+  font-size: 18px;
+}
+/* LIST HEADER */
+.chk-out-list-header {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-align: center;
+  display: block;
+  border-bottom: 2px solid cadetblue;
+  padding-bottom: 10px;
+}
+/* CART ITEMS LIST */
+.chk-out.cart-items-list {
+  height: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+/* CART ITEM */
+.chk-out.cart-item {
+  cursor: pointer;
+  height: 100px;
+  margin: 10px 0;
+}
+/* CART ITEM ::AFTER LINE DIVIDER */
+.chk-out.cart-item::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100%);
+  bottom: -10px;
+  margin: 0 auto;
+  background-color: #ed9121;
+}
+/* CART ITEM IMAGE */
+.chk-out.cart-item-image {
+  width: 20%;
+  max-width: 100px;
+  height: 100px;
+  padding: 3px;
+}
+.chk-out.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* CART ITEM DETAILS DIV */
+.chk-out.cart-item-details {
+  width: 75%;
+  max-height: 100%;
+  padding: 5px;
+}
+
+/* PRICE DETAIL DIV */
+.chk-out.item-pricing-detail {
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* UNIT-PRICE */
+.chk-out.item-price.unit {
+  margin: 0;
+}
+.chk-out.item-price {
+  min-width: 50px;
+  margin-left: 5px;
+}
+/* ITEM-TOTAL */
+.chk-out.item-price-total {
+  display: flex;
+  align-items: center;
+  color: #000000;
+  font-weight: 600;
+  margin-left: 8px;
+  margin-left: 0;
+}
+/* EQUAL SIGN */
+.equal-sign {
+  margin: 0 7px;
+}
+
+/* REMOVE ITEM BUTTON */
+.chk-out.item-remove-btn {
+  max-width: 5%;
+  height: 17px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+}
+.chk-out.item-remove-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.chk-out.item-remove-btn:active {
+  scale: 2;
+}

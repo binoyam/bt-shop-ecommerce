@@ -1,0 +1,101 @@
+/* NAV BAR */
+.navigation {
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+/* NAV LINKS/MEN,WOMEN,ELECTRONICS... */
+.nav-links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.nav-link {
+  /* margin-right: 20px; */
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #000000;
+  border-bottom: 2px solid #ed9121;
+}
+
+
+/* MOBILE SCREEN ElEMENTS , MENU AND CLOSE MENU BTNS */
+.menu-btn,
+.close-menu-btn {
+  display: none;
+  width: 25px;
+  height: 20px;
+  padding: 1px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.menu-btn img,
+.close-menu-btn img{
+ width: 100%;
+ /* height: 100%; */
+ object-fit: contain;
+}
+@media only screen and (max-width: 1000px){
+  .navigation{
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 800px){
+  .navigation{
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .nav-links {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 90%;
+    padding: 20px;
+    background-color: white;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    box-shadow: 0px 10px 60px 5px #d6d6d6;
+  }
+  .nav-links.show{
+    display: flex;
+  }
+  .nav-links.hide{
+    display: none;
+  }
+  .nav-links li {
+    margin: 10px 0;
+    width: 100%;
+  }
+  .nav-link:hover {
+    background-color: cadetblue;
+    color: white;
+    border-bottom: none;
+  }
+  .nav-link {
+    display: block;
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: center;
+    margin: 0;
+  }
+  .menu-btn,.close-menu-btn {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+  }
+  
+}

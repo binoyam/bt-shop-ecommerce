@@ -1,0 +1,54 @@
+.credit-card-form {
+  max-width: 400px;
+  /* height: 300px; */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 30px;
+  background-color: rgb(197, 197, 226);
+}
+.exp-cvc-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.exp-cvc-wrapper div {
+  margin-top: 10px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+.form-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#card-number,
+#exp-date,
+#cvc {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  margin: 4px 0;
+  border-radius: 3px;
+  font-size: 16px;
+}
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+.pay-btn {
+  width: 60%;
+  margin: 20px auto 0;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: rgb(8, 8, 56);
+  color: #fff;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 3px;
+}
