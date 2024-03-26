@@ -51,7 +51,7 @@ function ProductDescription({ products, addToCart }) {
 
         <div className="product-details">
           <h1 className="prd-name">{title}</h1>
-          <p className="prd-price">$ {price}</p>
+          <p className="prd-price">${price}</p>
           <p className="prd-description">{description}</p>
           <div className="product-amount-cart">
             <div className="quantity-selector">

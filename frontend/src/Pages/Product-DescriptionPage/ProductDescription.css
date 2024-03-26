@@ -1,7 +1,7 @@
 .product-description-page {
-  padding: 20px;
+  padding: 60px 40px 40px;
   width: 100%;
-  height: calc(100vh - 140px);
+  min-height: calc(100vh - 140px);
   position: relative; /* for back button*/
   background-color: white;
   border-top-left-radius: 15px;
@@ -36,30 +36,28 @@
 }
 /* PRODCUT IMAGE / DETAILS WRAPPER */
 .product-info {
-  width: 900px;
-  max-width: 100%;
-  min-height: 350px;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 /* PRODUCT IMAGE WRAPPER */
 .product-image-div {
-  width: 300px;
+  width: 40%;
   height: 350px;
   padding-left: 5rem;
 }
 /* PRODUCT IMAGE  */
 .product-image-div img {
-  width: 300px;
-  height: 350px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 /* PRODCUT DETIALS AREA */
 .product-details {
-  width: 550px;
+  width: 50%;
   padding-left: 3rem;
 }
 /* PRODCUT NAME */
@@ -72,30 +70,34 @@
 }
 /* PRODUCT PRICE */
 .prd-price {
+  display: inline;
   font-size: 18px;
   color: #7bff00;
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: 15px;
+  padding: 5px;
+  background-color: #000000;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px #ed9121;
 }
 /* PRODUCT DESCRIPTION */
 .prd-description {
+  color: #333333;
   font-weight: 500;
   line-height: 1.5;
-  margin-bottom: 15px;
+  margin: 15px 0;
 }
 /* PRODUCT AMOUNT SELECTION / ADD TO CART WRAPPER */
 .product-amount-cart {
   width: 100%;
-  min-height: 35px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 /* PRODUCT AMOUNT SELECTION DIV */
 .quantity-selector {
   width: 30%;
-  height: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,8 +144,7 @@
 }
 /* ADD TO CART BUTTON */
 .prd-add-to-cart {
-  width: 30%;
-  height: 35px;
+  width: 35%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -154,13 +155,14 @@
   font-size: 14px;
   font-weight: 600;
   padding: 5px;
+  line-height: 1;
   border: 1px solid #ed9121;
   border-radius: 3px;
   outline: none;
   transition: background-color color border 0.3s ease-in-out;
 }
 .prd-add-to-cart:hover {
-  border: none;
+  border: 1px solid transparent;
   background-color: #333;
   color: #ffffff;
 }
@@ -175,10 +177,10 @@
 }
 /* CHECKOUT BUTTON */
 .prd-desc-checkout-btn {
-  display: block;
+  /* display: block; */
   width: 30%;
-  height: 35px;
-  padding: 5px;
+  /* height: 35px; */
+  padding: 5px 0;
   background-color: #ed9121;
   color: white;
   border-radius: 3px;
@@ -186,11 +188,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 1px 1px 0px #333;
+  transition: all 0.3s ease-out;
 }
 .prd-desc-checkout-btn:hover {
   background-color: #333;
+  box-shadow: 0px 0px 0px transparent;
+  font-size: 14px;
 }
 @media only screen and (max-width: 800px) {
+  .product-info {
+    justify-content: space-between;
+  }
+  .product-details {
+    width: 55%;
+    padding-left: 0;
+  }
+  .back-btn {
+    left: 2rem;
+    top: 2rem;
+  }
   .product-image-div {
     padding-left: 2rem;
   }
@@ -198,17 +215,69 @@
     font-size: 18px;
   }
   .prd-description {
+    width: 90%;
     font-size: 14px;
     line-height: 1;
   }
   .product-amount-cart {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 10px;
   }
   .quantity-selector,
   .prd-add-to-cart,
   .prd-desc-checkout-btn {
-    width: 70%;
+    width: 50%;
   }
 }
-/* //make more responsive by makinf flex directio column */
+@media only screen and (max-width: 700px) {
+  .product-image-div {
+    width: 100%;
+    height: 250px;
+    padding-left: 1rem;
+  }
+  .product-details {
+    width: 80%;
+  }
+  .product-info {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .prd-name {
+    font-size: 16px;
+    text-align: center;
+  }
+  .prd-price {
+    text-align: center;
+    display: block;
+    width: 25%;
+    margin: 0 auto;
+  }
+  .prd-description {
+    width: 100%;
+    text-align: justify;
+  }
+  .product-amount-cart {
+    flex-wrap: nowrap;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .product-description-page {
+    padding: 10px;
+  }
+  .product-details {
+    width: 100%;
+  }
+  .back-btn {
+    top: 1rem;
+    left: 1rem;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    gap: 5px;
+  }
+  .back-btn img {
+    width: 15px;
+    height: 13px;
+  }
+}

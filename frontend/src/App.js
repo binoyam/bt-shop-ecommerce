@@ -32,18 +32,20 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   // console.log(orderedItems);
-  function toggleCartDropDown() {
-    setIsCartOpen(!isCartOpen);
-    setIsAccountPopupOpen(false);
-  }
-  function toggleUserPopup() {
-    setIsAccountPopupOpen(!isAccountPopupOpen);
-    setIsCartOpen(false);
-  }
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
     fetchProducts();
   }, []);
+  /* FUNCTION TO TOGGLE CART POPUP */
+  function toggleCartDropDown() {
+    setIsCartOpen(!isCartOpen);
+    setIsAccountPopupOpen(false);
+  }
+  /* FUNCTION TO TOGGLE USER POPUP */
+  function toggleUserPopup() {
+    setIsAccountPopupOpen(!isAccountPopupOpen);
+    setIsCartOpen(false);
+  }
   const updateUserStatus = (customerData) => {
     // console.log(customerData);
     if (customerData) {

@@ -12,4 +12,5 @@
 * (step 2)
 - cd ../backend
 - venv\scripts\activate
+- pip install -r requirements.txt
 - python app.py
