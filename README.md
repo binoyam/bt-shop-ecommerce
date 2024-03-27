@@ -3,14 +3,12 @@
 #### FRONTEND: REACT, BACKEND: FLASK, DATABASE: MYSQL
 
 # INSTALLATION
-* (step 1)
+### (frontend)
 - git clone https://github.com/binoyam/bt-shop-ecommerce.git
 - cd frontend
 - npm install
-[open browser](http://localhost:3000)
-
-* (step 2)
+- npm start
+### (backend)
 - cd ../backend
-- venv\scripts\activate
 - pip install -r requirements.txt
 - python app.py

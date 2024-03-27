@@ -2,7 +2,6 @@ import ProductItem from '../Product-Item/ProductItem';
 import './ProductList.css';
 
 function ProductList({ products, addToCart }) {
-  console.log(products);
   const handleAddToCart = (product) => {
     addToCart(product, 1);
   };
