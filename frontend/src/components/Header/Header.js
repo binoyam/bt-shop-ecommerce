@@ -3,7 +3,9 @@ import CartIcon from "../../Assets/Images/icon-cart.svg";
 import Nav from "../Header-Nav/Nav";
 import Cart from "../Header-Cart/Cart";
 import UserIcon from "../../Assets/Images/avatar.svg";
+import adminIcon from "../../Assets/Images/adminIcon.svg";
 import UserAccountPopup from "../UserAccount/UserAccountPopup";
+import { Link } from "react-router-dom";
 
 function Header({
   cartItems,
@@ -25,8 +27,8 @@ function Header({
       <a href="/home" className="logo-link">
         <span className="logo-text">bt-shop</span>
         {customerData !== null && (
-            <span className="username"> [ {customerData?.customerName} ]</span>
-          )}
+          <span className="username"> [ {customerData?.customerName} ]</span>
+        )}
       </a>
 
       <Nav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
@@ -39,6 +41,9 @@ function Header({
           ) : null}
         </div>
 
+        <Link to="/admin" className="admin-profile-pic">
+          <img src={adminIcon} alt="avatar" />
+        </Link>
         <div onClick={toggleUserPopup} className="user-profile-pic">
           <img src={UserIcon} alt="avatar" />
         </div>

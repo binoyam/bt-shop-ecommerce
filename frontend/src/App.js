@@ -17,6 +17,7 @@ import About from "./Pages/AboutPage/About";
 import Contact from "./Pages/ContactPage/Contact";
 import ProductList from "./components/ProductList/ProductList";
 import PrivacyPolicy from "./Pages/PrivacyPolicyPage/PrivacyPolicy";
+import AdminPage from "./Pages/AdminPage/AdminPage";
 
 function App() {
   /* LOGGED IN STATE */
@@ -93,8 +94,8 @@ function App() {
     if (orderedItems) {
       setOrderedItems(orderedItems);
       console.log(orderedItems);
-      setCartItems([]);
-      localStorage.setItem("cartItems", "");
+      // setCartItems([]);
+      // localStorage.setItem("cartItems", "");
     }
   };
   const fetchProducts = async () => {
@@ -170,15 +171,16 @@ function App() {
 
       <main className="main-content">
         <Routes>
+          <Route path="/admin" element={<AdminPage />} />
           <Route
             exact
             path="/"
-            element={<HomePage products={products} addToCart={addToCart} />}
+            element={<HomePage addToCart={addToCart} products={products} />}
           />
 
           <Route
             path="/home"
-            element={<HomePage products={products} addToCart={addToCart} />}
+            element={<HomePage addToCart={addToCart} products={products} />}
           />
 
           <Route
@@ -211,17 +213,13 @@ function App() {
 
           <Route
             path="/products"
-            element={<ProductList products={products} addToCart={addToCart} />}
+            element={<ProductList addToCart={addToCart} products={products} />}
           />
           <Route
             exact
             path="/products/:id"
             element={
-              <ProductDescription
-                handleCustomerOrder={handleCustomerOrder}
-                products={products}
-                addToCart={addToCart}
-              />
+              <ProductDescription addToCart={addToCart} products={products} />
             }
           />
 

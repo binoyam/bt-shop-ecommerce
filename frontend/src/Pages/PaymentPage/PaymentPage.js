@@ -25,63 +25,73 @@ function PaymentPage({ cartItems, customerData, isLoggedIn, orderedItems }) {
 
   return (
     <div className="payment-page">
-      {isLoggedIn && (
-        <div className="payment_page_header">
-          Dear [{customerData?.customerName}],
-          <p className="pph_txt">
-            Your Order has been placed successfully <br />
-            Continue to payment below to finish
-          </p>
+      <div className="orders_info">
+        {isLoggedIn && orderedItems.length !== 0 && (
+          <div className="payment_page_header">
+            Dear [{customerData?.customerName}],
+            <p className="pph_txt">
+              Your Order has been placed successfully <br />
+              Continue to payment below to finish
+            </p>
+          </div>
+        )}
+        <div className="current-total-div">
+          <p className="current-total-pre">Current Total: </p>
+          <span className="current-total">${calculateTotal().toFixed(2)}</span>
+        </div>
+      </div>
+      {orderedItems.length !== 0 && (
+        <div className="payment_wrapper">
+          <div className="payment-methods">
+            <h2 className="pay-method-title">Choose payment method</h2>
+            <div className="methods">
+              <button
+                id="pay-method-btn"
+                onClick={() => handlePayMethodChange("creditcard")}
+                className={
+                  selectedPayMethod === "creditcard"
+                    ? "method-btn active"
+                    : "method-btn"
+                }
+              >
+                <img
+                  className="card-img"
+                  src={MasterCardLogo}
+                  alt="mastercard"
+                />
+              </button>
+              <button
+                id="pay-method-btn"
+                onClick={() => handlePayMethodChange("paypal")}
+                className={
+                  selectedPayMethod === "paypal"
+                    ? "method-btn active"
+                    : "method-btn"
+                }
+              >
+                <img className="paypal-img" src={PaypalLogo} alt="paypal" />
+              </button>
+              <button
+                id="pay-method-btn"
+                onClick={() => handlePayMethodChange("bitcoin")}
+                className={
+                  selectedPayMethod === "bitcoin"
+                    ? "method-btn active"
+                    : "method-btn"
+                }
+              >
+                <img className="bitcoin-img" src={BitcoinLogo} alt="bitcoin" />
+              </button>
+            </div>
+          </div>
+
+          <div className="payment-form-container">
+            {selectedPayMethod === "creditcard" && <CreditCardForm />}
+            {selectedPayMethod === "paypal" && <PayPalForm />}
+            {selectedPayMethod === "bitcoin" && <BitcoinForm />}
+          </div>
         </div>
       )}
-      <div className="current-total-div">
-        <p className="current-total-pre">Current Total: </p>
-        <span className="current-total">${calculateTotal().toFixed(2)}</span>
-      </div>
-      <div className="payment-methods">
-        <h2 className="pay-method-title">Choose payment method</h2>
-        <div className="methods">
-          <button
-            id="pay-method-btn"
-            onClick={() => handlePayMethodChange("creditcard")}
-            className={
-              selectedPayMethod === "creditcard"
-                ? "method-btn active"
-                : "method-btn"
-            }
-          >
-            <img className="card-img" src={MasterCardLogo} alt="mastercard" />
-          </button>
-          <button
-            id="pay-method-btn"
-            onClick={() => handlePayMethodChange("paypal")}
-            className={
-              selectedPayMethod === "paypal"
-                ? "method-btn active"
-                : "method-btn"
-            }
-          >
-            <img className="paypal-img" src={PaypalLogo} alt="paypal" />
-          </button>
-          <button
-            id="pay-method-btn"
-            onClick={() => handlePayMethodChange("bitcoin")}
-            className={
-              selectedPayMethod === "bitcoin"
-                ? "method-btn active"
-                : "method-btn"
-            }
-          >
-            <img className="bitcoin-img" src={BitcoinLogo} alt="bitcoin" />
-          </button>
-        </div>
-      </div>
-
-      <div className="payment-form-container">
-        {selectedPayMethod === "creditcard" && <CreditCardForm />}
-        {selectedPayMethod === "paypal" && <PayPalForm />}
-        {selectedPayMethod === "bitcoin" && <BitcoinForm />}
-      </div>
     </div>
   );
 }
