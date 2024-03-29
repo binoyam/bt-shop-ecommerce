@@ -32,8 +32,9 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
-  const [adminMode, setAdminMode] = useState(false)
-  // console.log(orderedItems);
+  const [adminMode, setAdminMode] = useState(false);
+  console.log(orderedItems);
+  // console.log(cartItems);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
     fetchProducts();
@@ -66,11 +67,14 @@ function App() {
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
-    const cartItemData = cartItems.map(({ id, quantity, price }) => ({
-      productId: id,
-      quantity: quantity,
-      price: price,
-    }));
+    const cartItemData = cartItems.map(
+      ({ id, quantity, price, title, category }) => ({
+        productId: id,
+        quantity: quantity,
+        price: price,
+        title: title,
+      })
+    );
     console.log(cartItemData);
     try {
       const response = await fetch("/api/place_order", {

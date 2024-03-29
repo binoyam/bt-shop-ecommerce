@@ -11,32 +11,32 @@ app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "flaskdatabase1"
 
 mysql = MySQL(app)
-@app.route('/api/users')
-def get_users():
-    cursor = mysql.connection.cursor()
-    cursor.execute('SELECT id, name, email FROM users_table')
-    users = cursor.fetchall()
-    cursor.close()
-    user_list = [{'id': user[0], 'name': user[1], 'email': user[2]} for user in users]
-    return jsonify(user_list)
+# @app.route('/api/users')
+# def get_users():
+#     cursor = mysql.connection.cursor()
+#     cursor.execute('SELECT id, name, email, gender FROM users_table')
+#     users = cursor.fetchall()
+#     cursor.close()
+#     user_list = [{'id': user[0], 'name': user[1], 'email': user[2], 'gender': user[4]} for user in users]
+#     return jsonify(user_list)
 
 
-@app.route('/api/cartItems')
-def get_cart_items():
-    cursor = mysql.connection.cursor()
-    cursor.execute('SELECT id, productName, price FROM cart_items_table')
-    cart_items = cursor.fetchall()
-    cursor.close()
-    cart_item_list = [{'id': item[0], 'productName': item[1], 'price': item[2]} for item in cart_items]
-    return jsonify(cart_item_list)
-# include price in the query and from the frontend
-# include name in the query and from the frontend
-# include coulum for price in the table
+# @app.route('/api/cartItems')
+# def get_cart_items():
+#     cursor = mysql.connection.cursor()
+#     cursor.execute('SELECT id, productName, price FROM cart_items_table')
+#     cart_items = cursor.fetchall()
+#     cursor.close()
+#     cart_item_list = [{'id': item[0], 'productName': item[1], 'price': item[2]} for item in cart_items]
+#     return jsonify(cart_item_list)
+
+
 @app.route("/hi")
 def hello_world():
     return "<p>Hello, World!</p>"
 
 
+# login user
 @app.route("/api/login", methods=["POST"])
 def login():
     username = request.json.get("username")
@@ -67,6 +67,7 @@ def login():
     return jsonify(response_data)
 
 
+# signup new user
 @app.route("/api/signup", methods=["POST"])
 def signup():
     signup_data = request.json
@@ -114,6 +115,7 @@ def signup():
     return jsonify(response_data)
 
 
+# fetch all products
 @app.route("/api/products", methods=["GET"])
 def get_products():
     cursor = mysql.connection.cursor()
@@ -130,41 +132,64 @@ def get_products():
     return jsonify(products)
 
 
+# customer order placement
 @app.route("/api/place_order", methods=["POST"])
 def place_order():
     data = request.json
+    print(data)
     customer_data = data.get("customerData")
+    products_list = data.get("cartItemData")
+
     customer_id = customer_data.get("customerId")
     customer_name = customer_data.get("customerName")
     customer_email = customer_data.get("customerEmail")
-    product_data = data.get("cartItemData")
+
     cursor = mysql.connection.cursor()
-    cursor.execute(
-        "INSERT INTO orders_table (user_id, user_name, user_email) VALUES (%s, %s, %s)",
-        (customer_id, customer_name, customer_email),
-    )
-    order_id = cursor.lastrowid
-    for product in product_data:
+
+    for product in products_list:
         product_id = product.get("productId")
         quantity = product.get("quantity")
+        product_name = product.get("title")
+        product_price = product.get("price")
 
         cursor.execute(
-            "INSERT INTO order_items_table (order_id, product_id, quantity) VALUES (%s, %s, %s)",
-            (order_id, product_id, quantity),
+            "INSERT INTO orders_table (user_id, user_name, user_email, product_id, product_name, price, quantity) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            (
+                customer_id,
+                customer_name,
+                customer_email,
+                product_id,
+                product_name,
+                product_price,
+                quantity,
+            ),
         )
-    mysql.connection.commit()
-    cursor.execute(
-        "SELECT * FROM order_items_table WHERE order_id = %s",
-        (order_id,),
-    )
+
+        mysql.connection.commit()
+        cursor.execute(
+            "SELECT * FROM orders_table WHERE user_id = %s",
+            (customer_id,),
+        )
     order_items = []
     orders_list = cursor.fetchall()
     for order in orders_list:
-        product_id = order[2]
-        quantity = order[3]
+        order_id = order[0]
+        user_id = order[1]
+        user_name = order[2]
+        user_email = order[3]
+        product_id = order[4]
+        product_name = order[5]
+        price = order[6]
+        quantity = order[7]
         order_items.append(
             {
+                "orderId": order_id,
+                "userId": user_id,
+                "userName": user_name,
+                "userEmail": user_email,
                 "productId": product_id,
+                "productName": product_name,
+                "price": price,
                 "quantity": quantity,
             }
         )
@@ -181,6 +206,7 @@ def place_order():
     return jsonify(response_data)
 
 
+# customer feedback form
 @app.route("/api/contact", methods=["POST"])
 def handle_contact_form():
     data = request.json
