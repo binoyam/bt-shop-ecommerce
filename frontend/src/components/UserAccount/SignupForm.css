@@ -5,7 +5,14 @@
   gap: 1rem;
   position: relative;
 }
-
+.error_message {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+  top: 50px;
+}
 .signup_form_group {
   display: flex;
   flex-direction: column;

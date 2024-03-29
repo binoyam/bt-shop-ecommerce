@@ -32,6 +32,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
+  const [adminMode, setAdminMode] = useState(false)
   // console.log(orderedItems);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
@@ -65,13 +66,14 @@ function App() {
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
-    const cartItemData = cartItems.map(({ id, quantity }) => ({
+    const cartItemData = cartItems.map(({ id, quantity, price }) => ({
       productId: id,
       quantity: quantity,
+      price: price,
     }));
     console.log(cartItemData);
     try {
-      const response = await fetch("/place_order", {
+      const response = await fetch("/api/place_order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -171,7 +173,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage adminMode={adminMode} />} />
           <Route
             exact
             path="/"

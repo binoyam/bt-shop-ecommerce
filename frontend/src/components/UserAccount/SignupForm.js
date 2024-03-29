@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SignupForm.css";
 import closeIcon from "../../Assets/Images/close_btn.svg";
 function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
+  const [errorMessage, setErrorMessage] = useState(false);
   const [signupData, setSignupData] = useState({
     username: "",
     email: "",
@@ -45,7 +46,17 @@ function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
             customerEmail: data.customerEmail,
           };
           updateUserStatus(customerData);
+          setErrorMessage(false);
           setIsLoggedIn(true);
+          setSignupData({
+            username: "",
+            email: "",
+            password: "",
+            gender: "",
+            phoneNumber: "",
+          });
+        } else if (data && data.signupSuccess === "false1") {
+          setErrorMessage(true);
         } else {
           console.log("Signup unsuccessful:", data);
         }
@@ -53,17 +64,13 @@ function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
       .catch((error) => {
         console.error("Error:", error);
       });
-    setSignupData({
-      username: "",
-      email: "",
-      password: "",
-      gender: "",
-      phoneNumber: "",
-    });
   };
 
   return (
     <form onSubmit={handleSubmit} className="signup_form">
+      {errorMessage && (
+        <div className="error_message">Email already registered</div>
+      )}
       <div onClick={toggleUserPopup} className="close_popup_icon">
         <img src={closeIcon} alt="close popup" />
       </div>

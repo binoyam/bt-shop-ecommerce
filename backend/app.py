@@ -11,8 +11,27 @@ app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "flaskdatabase1"
 
 mysql = MySQL(app)
+@app.route('/api/users')
+def get_users():
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT id, name, email FROM users_table')
+    users = cursor.fetchall()
+    cursor.close()
+    user_list = [{'id': user[0], 'name': user[1], 'email': user[2]} for user in users]
+    return jsonify(user_list)
 
 
+@app.route('/api/cartItems')
+def get_cart_items():
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT id, productName, price FROM cart_items_table')
+    cart_items = cursor.fetchall()
+    cursor.close()
+    cart_item_list = [{'id': item[0], 'productName': item[1], 'price': item[2]} for item in cart_items]
+    return jsonify(cart_item_list)
+# include price in the query and from the frontend
+# include name in the query and from the frontend
+# include coulum for price in the table
 @app.route("/hi")
 def hello_world():
     return "<p>Hello, World!</p>"
@@ -52,34 +71,45 @@ def login():
 def signup():
     signup_data = request.json
     cursor = mysql.connection.cursor()
-    query = "INSERT INTO users_table (name, email, password, gender, phoneNumber) VALUES (%s, %s, %s, %s, %s)"
-    values = (
-        signup_data["username"],
-        signup_data["email"],
-        signup_data["password"],
-        signup_data["gender"],
-        signup_data["phoneNumber"],
-    )
-    cursor.execute(query, values)
-    mysql.connection.commit()
     cursor.execute(
-        "SELECT * FROM users_table WHERE name = %s AND password = %s",
-        (signup_data["username"], signup_data["password"]),
+        "SELECT * FROM users_table WHERE email = %s", (signup_data["email"],)
     )
-    account = cursor.fetchone()
-    if account:
-        customer_id = account[0]
-        customer_name = account[1]
-        customer_email = account[2]
+    existing_user = cursor.fetchone()
+    if existing_user:
         response_data = {
-            "signupSuccess": "true",
-            "customerId": customer_id,
-            "customerName": customer_name,
-            "customerEmail": customer_email,
+            "signupSuccess": "false1",
+            "message": "Email already registered",
         }
-
     else:
-        response_data = {"signupSuccess": "false"}
+        query = "INSERT INTO users_table (name, email, password, gender, phoneNumber) VALUES (%s, %s, %s, %s, %s)"
+        values = (
+            signup_data["username"],
+            signup_data["email"],
+            signup_data["password"],
+            signup_data["gender"],
+            signup_data["phoneNumber"],
+        )
+        cursor.execute(query, values)
+        mysql.connection.commit()
+        cursor.execute(
+            "SELECT * FROM users_table WHERE name = %s AND password = %s",
+            (signup_data["username"], signup_data["password"]),
+        )
+        account = cursor.fetchone()
+        if account:
+            customer_id = account[0]
+            customer_name = account[1]
+            customer_email = account[2]
+            response_data = {
+                "signupSuccess": "true",
+                "customerId": customer_id,
+                "customerName": customer_name,
+                "customerEmail": customer_email,
+            }
+
+        else:
+            response_data = {"signupSuccess": "false"}
+    cursor.close()
 
     return jsonify(response_data)
 
@@ -100,7 +130,7 @@ def get_products():
     return jsonify(products)
 
 
-@app.route("/place_order", methods=["POST"])
+@app.route("/api/place_order", methods=["POST"])
 def place_order():
     data = request.json
     customer_data = data.get("customerData")
@@ -151,7 +181,7 @@ def place_order():
     return jsonify(response_data)
 
 
-@app.route("/contact", methods=["POST"])
+@app.route("/api/contact", methods=["POST"])
 def handle_contact_form():
     data = request.json
     print(data)
