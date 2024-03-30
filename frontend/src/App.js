@@ -185,7 +185,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         handleCustomerOrder={handleCustomerOrder}
-        setAdminMode={setAdminMode}
+        setAdminMode={setAdminMode}//admin mode page
       />
 
       <main className="main-content">
