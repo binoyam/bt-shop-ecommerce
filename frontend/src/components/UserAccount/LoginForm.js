@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./LoginForm.css";
 import closeIcon from "../../Assets/Images/close_btn.svg";
 
-function LoginForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
+function LoginForm({
+  updateUserStatus,
+  setIsLoggedIn,
+  toggleUserPopup,
+  setAdminMode,
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
@@ -31,14 +36,17 @@ function LoginForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
       .then((data) => {
         console.log(data);
         if (data && data.loginSuccess === "true") {
+          const { customerId, customerName, customerEmail, isAdmin } = data;
           const customerData = {
-            customerId: data.customerId,
-            customerName: data.customerName,
-            customerEmail: data.customerEmail,
-          };
+            customerId,
+            customerName,
+            customerEmail,
+            isAdmin,
+          }; //function to check whos admin / to keep track
           updateUserStatus(customerData);
           setIsLoggedIn(true);
           setErrorMessage(false);
+          setAdminMode(data.isAdmin === true);
         } else {
           console.log("Login unsuccessful:", data);
           setErrorMessage(true);

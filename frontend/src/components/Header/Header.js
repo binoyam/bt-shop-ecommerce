@@ -21,6 +21,7 @@ function Header({
   toggleUserPopup,
   isAccountPopupOpen,
   isCartOpen,
+  setAdminMode,
 }) {
   return (
     <header className="header">
@@ -54,6 +55,7 @@ function Header({
             customerData={customerData}
             toggleUserPopup={toggleUserPopup}
             setIsLoggedIn={setIsLoggedIn}
+            setAdminMode={setAdminMode}
           />
         )}
       </div>

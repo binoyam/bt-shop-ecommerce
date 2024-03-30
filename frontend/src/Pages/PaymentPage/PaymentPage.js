@@ -7,13 +7,13 @@ import CreditCardForm from "../../components/PaymentForms/CreditCardForm";
 import PayPalForm from "../../components/PaymentForms/PayPalForm";
 import BitcoinForm from "../../components/PaymentForms/BitcoinForm";
 
-function PaymentPage({ cartItems, customerData, isLoggedIn, orderedItems }) {
+function PaymentPage({ customerData, isLoggedIn, orderedItems }) {
   const [selectedPayMethod, setSelectedPayMethod] = useState("creditcard");
-  console.log(orderedItems);
+  // console.log(orderedItems);
   // const TAX_RATE = 0.15;
   const calculateTotal = () => {
     let total = 0;
-    cartItems.forEach((item) => {
+    orderedItems.forEach((item) => {
       total += item.price * item.quantity;
     });
     return total;
@@ -35,6 +35,17 @@ function PaymentPage({ cartItems, customerData, isLoggedIn, orderedItems }) {
             </p>
           </div>
         )}
+        <ul className="orders_list">
+          <div>You have ordered {orderedItems.length} items</div>
+          {orderedItems.map((item) => (
+            <li key={item.orderId}>
+              <div className="prdId">Product ID: {item.productId}</div>
+              <div className="prdname">Product name: {item.productName}</div>
+              <div className="prdquantity">Quantity:{item.quantity}</div>
+              <div className="prdprice">Price: ${item.price}</div>
+            </li>
+          ))}
+        </ul>
         <div className="current-total-div">
           <p className="current-total-pre">Current Total: </p>
           <span className="current-total">${calculateTotal().toFixed(2)}</span>

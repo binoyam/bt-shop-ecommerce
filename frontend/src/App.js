@@ -33,12 +33,14 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
-  console.log(orderedItems);
+  // console.log(orderedItems);
   // console.log(cartItems);
+  console.log(adminMode);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
     fetchProducts();
   }, []);
+  
   /* FUNCTION TO TOGGLE CART POPUP */
   function toggleCartDropDown() {
     setIsCartOpen(!isCartOpen);
@@ -60,15 +62,17 @@ function App() {
       setIsLoggedIn(false);
       setCustomerData(null);
       setCartItems([]);
+      setAdminMode(false);
       localStorage.setItem("customerData", "");
       localStorage.setItem("cartItems", "");
+      localStorage.setItem("orderedItems", "");
     }
   };
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
     const cartItemData = cartItems.map(
-      ({ id, quantity, price, title, category }) => ({
+      ({ id, quantity, price, title }) => ({
         productId: id,
         quantity: quantity,
         price: price,
@@ -100,6 +104,7 @@ function App() {
     if (orderedItems) {
       setOrderedItems(orderedItems);
       console.log(orderedItems);
+      localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
       // setCartItems([]);
       // localStorage.setItem("cartItems", "");
     }
@@ -147,13 +152,20 @@ function App() {
   /* STORE CART DATA AND CUSTOMER  DATA ON LOCAL STORAGE */
   useEffect(() => {
     const storedCart = localStorage.getItem("cartItems");
+    const storedOrders = localStorage.getItem("orderedItems");
     const storedCustomerData = localStorage.getItem("customerData");
     if (storedCustomerData) {
-      setCustomerData(JSON.parse(storedCustomerData));
+      const customerData = JSON.parse(storedCustomerData);
+      setCustomerData(customerData);
       setIsLoggedIn(true);
+      setAdminMode(customerData.isAdmin === true);
+      console.log(storedCustomerData);
     }
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
+    }
+    if (storedOrders) {
+      setOrderedItems(JSON.parse(storedOrders));
     }
   }, []);
 
@@ -173,6 +185,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         handleCustomerOrder={handleCustomerOrder}
+        setAdminMode={setAdminMode}
       />
 
       <main className="main-content">
@@ -249,7 +262,6 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 customerData={customerData}
                 orderedItems={orderedItems}
-                cartItems={cartItems}
               />
             }
           />

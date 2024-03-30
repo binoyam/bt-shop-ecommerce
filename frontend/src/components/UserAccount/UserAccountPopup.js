@@ -10,6 +10,7 @@ function UserAccountPopup({
   customerData,
   isLoggedIn,
   setIsLoggedIn,
+  setAdminMode,
 }) {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
@@ -50,6 +51,7 @@ function UserAccountPopup({
             updateUserStatus={updateUserStatus}
             setIsLoggedIn={setIsLoggedIn}
             toggleUserPopup={toggleUserPopup}
+            setAdminMode={setAdminMode}
           />
         )}
         {showSignupForm && !isLoggedIn && (
