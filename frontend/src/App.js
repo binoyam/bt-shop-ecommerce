@@ -89,8 +89,9 @@ function App() {
       console.log(data);
       if (data && data.isOrderPlaced === "true") {
         console.log("Order placed succesfully:", data);
-        const orderedItems = data.orderedItems
+        const orderedItems = data.orderedItems;
         setOrderedItems(orderedItems);
+        setCartItems([]);
         console.log(orderedItems);
         localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
       } else {

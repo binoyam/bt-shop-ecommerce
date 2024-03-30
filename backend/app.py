@@ -11,27 +11,44 @@ app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "flaskdatabase1"
 
 mysql = MySQL(app)
-# @app.route('/api/users')
-# def get_users():
-#     cursor = mysql.connection.cursor()
-#     cursor.execute('SELECT id, name, email, gender FROM users_table')
-#     users = cursor.fetchall()
-#     cursor.close()
-#     user_list = [{'id': user[0], 'name': user[1], 'email': user[2], 'gender': user[4]} for user in users]
-#     return jsonify(user_list)
 
 
-# @app.route('/api/cartItems')
-# def get_cart_items():
-#     cursor = mysql.connection.cursor()
-#     cursor.execute('SELECT id, productName, price FROM cart_items_table')
-#     cart_items = cursor.fetchall()
-#     cursor.close()
-#     cart_item_list = [{'id': item[0], 'productName': item[1], 'price': item[2]} for item in cart_items]
-#     return jsonify(cart_item_list)
+@app.route("/api/users")
+def get_users():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM users_table")
+    users = convert_to_objects(cursor)
+    cursor.close()
+    return jsonify(users)
 
 
-@app.route("/hi")
+@app.route("/api/orders")
+def get_orders():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM orders_table")
+    orders = convert_to_objects(cursor)
+    cursor.close()
+    print(orders)
+    return orders
+
+
+@app.route("/api/all_products")
+def get_all_products():
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM products_table")
+    products = convert_to_objects(cursor)
+    cursor.close()
+    return jsonify(products)
+
+def convert_to_objects(cursor):
+    # Get column names
+    columns = [column[0] for column in cursor.description]
+    # Fetch all rows
+    rows = cursor.fetchall()
+    # Convert rows to objects
+    objects = [dict(zip(columns, row)) for row in rows]
+    return objects
+@app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
@@ -159,7 +176,6 @@ def place_order():
     order_items = fetch_orders(customer_id)
     merged_items = merge_duplicates(order_items)
     print("merged_items", merged_items)
-
 
     if merged_items:
         response_data = {
