@@ -22,6 +22,7 @@ function Header({
   isAccountPopupOpen,
   isCartOpen,
   setAdminMode,
+  adminMode,
 }) {
   return (
     <header className="header">
@@ -35,16 +36,25 @@ function Header({
       <Nav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       <div className="nav-right">
-        <div onClick={toggleCartDropDown} className="cart-nav">
-          <img src={CartIcon} alt="Cart-icon" className="cart-icon" />
-          {cartItems?.length > 0 ? (
-            <span className="cart-counter">{cartItems.length}</span>
-          ) : null}
-        </div>
-
+        {!adminMode && (
+          <div onClick={toggleCartDropDown} className="cart-nav">
+            <img src={CartIcon} alt="Cart-icon" className="cart-icon" />
+            {cartItems?.length > 0 ? (
+              <span className="cart-counter">{cartItems.length}</span>
+            ) : null}
+          </div>
+        )}
+        {isCartOpen && (
+          <Cart
+            removeFromCart={removeFromCart}
+            cartItems={cartItems}
+            closeCart={toggleCartDropDown}
+          />
+        )}
         <Link to="/admin" className="admin-profile-pic">
           <img src={adminIcon} alt="avatar" />
         </Link>
+        
         <div onClick={toggleUserPopup} className="user-profile-pic">
           <img src={UserIcon} alt="avatar" />
         </div>
@@ -59,14 +69,6 @@ function Header({
           />
         )}
       </div>
-      {isCartOpen && (
-        <Cart
-          removeFromCart={removeFromCart}
-          cartItems={cartItems}
-          closeCart={toggleCartDropDown}
-          handleCustomerOrder={handleCustomerOrder}
-        />
-      )}
     </header>
   );
 }

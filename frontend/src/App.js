@@ -33,14 +33,13 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
-  // console.log(orderedItems);
+  console.log(orderedItems);
   // console.log(cartItems);
-  console.log(adminMode);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
     fetchProducts();
   }, []);
-  
+
   /* FUNCTION TO TOGGLE CART POPUP */
   function toggleCartDropDown() {
     setIsCartOpen(!isCartOpen);
@@ -71,14 +70,12 @@ function App() {
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
-    const cartItemData = cartItems.map(
-      ({ id, quantity, price, title }) => ({
-        productId: id,
-        quantity: quantity,
-        price: price,
-        title: title,
-      })
-    );
+    const cartItemData = cartItems.map(({ id, quantity, price, title }) => ({
+      productId: id,
+      quantity: quantity,
+      price: price,
+      title: title,
+    }));
     console.log(cartItemData);
     try {
       const response = await fetch("/api/place_order", {
@@ -92,7 +89,10 @@ function App() {
       console.log(data);
       if (data && data.isOrderPlaced === "true") {
         console.log("Order placed succesfully:", data);
-        customerOrderPlaced(data.orderedItems);
+        const orderedItems = data.orderedItems
+        setOrderedItems(orderedItems);
+        console.log(orderedItems);
+        localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
       } else {
         console.log("Order NOT placed:", data);
       }
@@ -100,15 +100,7 @@ function App() {
       console.error("Error during order placement :", error);
     }
   };
-  const customerOrderPlaced = (orderedItems) => {
-    if (orderedItems) {
-      setOrderedItems(orderedItems);
-      console.log(orderedItems);
-      localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
-      // setCartItems([]);
-      // localStorage.setItem("cartItems", "");
-    }
-  };
+
   const fetchProducts = async () => {
     try {
       const response = await fetch("/api/products");
@@ -159,7 +151,6 @@ function App() {
       setCustomerData(customerData);
       setIsLoggedIn(true);
       setAdminMode(customerData.isAdmin === true);
-      console.log(storedCustomerData);
     }
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
@@ -184,8 +175,8 @@ function App() {
         cartItems={cartItems}
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
-        handleCustomerOrder={handleCustomerOrder}
-        setAdminMode={setAdminMode}//admin mode page
+        setAdminMode={setAdminMode}
+        adminMode={adminMode}
       />
 
       <main className="main-content">

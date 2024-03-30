@@ -53,13 +53,24 @@ def login():
         customer_id = account[0]
         customer_name = account[1]
         customer_email = account[2]
+        is_admin = account[6]
 
-        response_data = {
-            "loginSuccess": "true",
-            "customerId": customer_id,
-            "customerName": customer_name,
-            "customerEmail": customer_email,
-        }
+        if is_admin:
+            response_data = {
+                "loginSuccess": "true",
+                "customerId": customer_id,
+                "customerName": customer_name,
+                "customerEmail": customer_email,
+                "isAdmin": True,
+            }
+        else:
+            response_data = {
+                "loginSuccess": "true",
+                "customerId": customer_id,
+                "customerName": customer_name,
+                "customerEmail": customer_email,
+                "isAdmin": False,
+            }
 
     else:
         response_data = {"loginSuccess": "false"}
@@ -136,14 +147,47 @@ def get_products():
 @app.route("/api/place_order", methods=["POST"])
 def place_order():
     data = request.json
-    print(data)
+    print("data", data)
     customer_data = data.get("customerData")
     products_list = data.get("cartItemData")
-
+    print("products_list", products_list)
     customer_id = customer_data.get("customerId")
     customer_name = customer_data.get("customerName")
     customer_email = customer_data.get("customerEmail")
 
+    insert_orders(customer_id, customer_name, customer_email, products_list)
+    order_items = fetch_orders(customer_id)
+    merged_items = merge_duplicates(order_items)
+    print("merged_items", merged_items)
+
+
+    if merged_items:
+        response_data = {
+            "isOrderPlaced": "true",
+            "orderedItems": merged_items,
+        }
+    else:
+        response_data = {
+            "isOrderPlaced": "false",
+        }
+    return jsonify(response_data)
+
+
+def merge_duplicates(order_items):
+    merged_items = {}
+    for item in order_items:
+        product_id = item["productId"]
+        quantity = item["quantity"]
+        if product_id in merged_items:
+            merged_items[product_id]["quantity"] += quantity
+        else:
+            merged_items[product_id] = item
+
+    merged_order_items = list(merged_items.values())
+    return merged_order_items
+
+
+def insert_orders(customer_id, customer_name, customer_email, products_list):
     cursor = mysql.connection.cursor()
 
     for product in products_list:
@@ -166,10 +210,16 @@ def place_order():
         )
 
         mysql.connection.commit()
-        cursor.execute(
-            "SELECT * FROM orders_table WHERE user_id = %s",
-            (customer_id,),
-        )
+
+
+def fetch_orders(customer_id):
+    cursor = mysql.connection.cursor()
+
+    cursor.execute(
+        "SELECT * FROM orders_table WHERE user_id = %s",
+        (customer_id,),
+    )
+
     order_items = []
     orders_list = cursor.fetchall()
     for order in orders_list:
@@ -194,16 +244,7 @@ def place_order():
             }
         )
 
-    if orders_list:
-        response_data = {
-            "isOrderPlaced": "true",
-            "orderedItems": order_items,
-        }
-    else:
-        response_data = {
-            "isOrderPlaced": "false",
-        }
-    return jsonify(response_data)
+    return order_items
 
 
 # customer feedback form

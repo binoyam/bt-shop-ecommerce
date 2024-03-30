@@ -42,7 +42,7 @@ function LoginForm({
             customerName,
             customerEmail,
             isAdmin,
-          }; //function to check whos admin / to keep track
+          };
           updateUserStatus(customerData);
           setIsLoggedIn(true);
           setErrorMessage(false);

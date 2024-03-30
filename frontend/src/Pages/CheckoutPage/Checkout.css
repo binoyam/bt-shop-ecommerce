@@ -136,6 +136,86 @@
 .chk-out.item-remove-btn:active {
   scale: 2;
 }
+/* CHECKOUT TOTAL  */
+.order-summary-wrapper {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+/* ORDER SUMMARY HEADER */
+.order-summary-header {
+  font-size: 18px;
+  color: #000000;
+  font-weight: 700;
+  border-bottom: 1px solid cadetblue;
+}
+.order-items,
+.shipping,
+.before-tax,
+.estimated-tax,
+.order-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+.left {
+  color: #000000;
+}
+.estimated-tax {
+  margin: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+.order-total {
+  color: #9e0000;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.tax {
+  color: #9e0000;
+}
+/* PAYMENT BUTTON & BACK BUTTON */
+.payment,
+.back-to-shop-btn {
+  position: absolute;
+  width: 35%;
+  right: -50%;
+  transform: translateY(-50%);
+  padding: 15px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 5px;
+  z-index: 9999;
+  transition: all 0.2s ease;
+}
+.payment {
+  background-color: rgb(99, 95, 160);
+  top: 75%;
+}
+.back-to-shop-btn {
+  top: 30%;
+  background-color: cadetblue;
+}
+.payment:hover {
+  background-color: #333;
+  border: 1px solid #ed9121;
+}
+.back-to-shop-btn:hover {
+  border-radius: 10px;
+  background-color: #9e0000;
+}
+
 @media only screen and (max-width: 760px) {
   .chk-out.cart-items-list {
     width: 80%;
@@ -143,7 +223,7 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
-  .checkout-header{
+  .checkout-header {
     flex-direction: column;
     margin-bottom: 20px;
   }
