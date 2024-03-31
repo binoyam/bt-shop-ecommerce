@@ -104,12 +104,15 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("/api/products");
+      const response = await fetch("http://127.0.0.1:5000/api/products");
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
       } else {
-        console.error("Error:", response.statusText);
+        const errorText = await response.text();
+        throw new Error(
+          `Request failed with status ${response.status}: ${errorText}`
+        );
       }
     } catch (error) {
       console.error("Error:", error);

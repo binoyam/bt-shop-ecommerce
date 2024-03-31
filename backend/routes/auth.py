@@ -4,6 +4,8 @@ from flask_mysqldb import MySQL
 auth_bp = Blueprint("auth", __name__)
 
 mysql = MySQL()
+
+
 @auth_bp.route("/api/login", methods=["POST"])
 def login():
     username = request.json.get("username")

@@ -1,13 +1,13 @@
 from flask import Blueprint, jsonify, request
 from flask_mysqldb import MySQL
 
-feedback_bp = Blueprint("contact", __name__)
+feedback_bp = Blueprint("feedback", __name__)
 
 mysql = MySQL()
 
 
 # customer feedback form
-@feedback_bp.route("/api/contact", methods=["POST"])
+@feedback_bp.route("/api/feedback", methods=["POST"])
 def handle_contact_form():
     data = request.json
     print(data)

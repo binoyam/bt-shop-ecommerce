@@ -12,7 +12,7 @@ function Contact() {
   /* MAKE SUBMIT MESSAGE DISAPPEAR AFTER 7 SECONDS */
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/api/contact", {
+    fetch("/api/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

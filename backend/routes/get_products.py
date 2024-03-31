@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 from flask_mysqldb import MySQL
 
-get_products_bp = Blueprint("place_orders", __name__)
+get_products_bp = Blueprint("get_products", __name__)
 
 mysql = MySQL()
 
@@ -18,5 +18,5 @@ def get_products():
             product[column] = row[i]
         products.append(product)
     cursor.close()
-    # print(products)
+    print(products)
     return jsonify(products)
