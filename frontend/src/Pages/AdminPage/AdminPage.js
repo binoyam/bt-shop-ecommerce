@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./AdminPage.css";
+import ProductList from "../../components/ProductList/ProductList";
+import ProductItem from "../../components/Product-Item/ProductItem";
 
 function AdminPage() {
   const [users, setUsers] = useState([]);
@@ -44,6 +46,38 @@ function AdminPage() {
       console.log("Error fetching products:", error);
     }
   };
+  const removeOrder = async (orderId) => {
+    try {
+      await fetch(`/api/orders/${orderId}`, { method: "DELETE" });
+      fetchOrders();
+    } catch (error) {
+      console.log("Error removing order:", error);
+    }
+  };
+
+  const removeUser = async (userId) => {
+    try {
+      await fetch(`/api/users/${userId}`, { method: "DELETE" });
+      fetchUsers();
+    } catch (error) {
+      console.log("Error removing user:", error);
+    }
+  };
+
+  const addProduct = async (productName) => {
+    try {
+      await fetch("/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productName }),
+      });
+      fetchProducts();
+    } catch (error) {
+      console.log("Error adding product:", error);
+    }
+  };
   return (
     <div className="admin-page">
       <h2>Hey boss! What would you like to do today?</h2>
@@ -54,7 +88,8 @@ function AdminPage() {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-           Customer ID: [{user.id}] Name: [{user.name}], Email: [{user.email}], Gender: [{user.gender}]{" "}
+            Customer ID: [{user.id}] Name: [{user.name}], Email: [{user.email}],
+            Gender: [{user.gender}]{" "}
           </li>
         ))}
       </ul>
@@ -62,14 +97,17 @@ function AdminPage() {
       <h3>Orders:</h3>
       <ul>
         {orders.map((order) => (
-          <li key={order.id}>Order ID: [{order.id}], Product: {order.product_name}, Quantity: [{order.quantity}]</li>
+          <li key={order.id}>
+            Order ID: [{order.id}], Product: {order.product_name}, Quantity: [
+            {order.quantity}]
+          </li>
         ))}
       </ul>
 
       <h3>Products:</h3>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <ProductItem key={product.id} product={product} />
         ))}
       </ul>
     </div>
