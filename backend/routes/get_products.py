@@ -8,9 +8,10 @@ mysql = MySQL()
 
 @get_products_bp.route("/api/products", methods=["GET"])
 def get_products():
+    print("hi")
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * FROM products_table")
-    columns = [column[0] for column in cursor.description]  # Retrieve column names
+    columns = [column[0] for column in cursor.description]
     products = []
     for row in cursor.fetchall():
         product = {}
@@ -18,5 +19,5 @@ def get_products():
             product[column] = row[i]
         products.append(product)
     cursor.close()
-    print(products)
+    # print(products)
     return jsonify(products)

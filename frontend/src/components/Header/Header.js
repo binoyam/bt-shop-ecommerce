@@ -44,9 +44,11 @@ function Header({
           </div>
         )}
 
-        <Link to="/admin" className="admin-profile-pic">
-          <img src={adminIcon} alt="avatar" />
-        </Link>
+        {adminMode && (
+          <Link to="/admin" className="admin-profile-pic">
+            <img src={adminIcon} alt="avatar" />
+          </Link>
+        )}
 
         <div onClick={toggleUserPopup} className="user-profile-pic">
           <img src={UserIcon} alt="avatar" />

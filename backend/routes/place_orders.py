@@ -10,10 +10,10 @@ mysql = MySQL()
 @place_orders_bp.route("/api/place_order", methods=["POST"])
 def place_order():
     data = request.json
-    print("data", data)
+    # print("data", data)
     customer_data = data.get("customerData")
     products_list = data.get("cartItemData")
-    print("products_list", products_list)
+    # print("products_list", products_list)
     customer_id = customer_data.get("customerId")
     customer_name = customer_data.get("customerName")
     customer_email = customer_data.get("customerEmail")
@@ -21,7 +21,7 @@ def place_order():
     insert_orders(customer_id, customer_name, customer_email, products_list)
     order_items = fetch_orders(customer_id)
     merged_items = merge_duplicates(order_items)
-    print("merged_items", merged_items)
+    # print("merged_items", merged_items)
 
     if merged_items:
         response_data = {

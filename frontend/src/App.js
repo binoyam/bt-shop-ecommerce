@@ -33,7 +33,7 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
-  console.log(orderedItems);
+  // console.log(orderedItems);
   // console.log(cartItems);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {
@@ -104,7 +104,7 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/products");
+      const response = await fetch("/api/products");
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
