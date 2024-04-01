@@ -1,7 +1,47 @@
-.users_list{
-    background-color: aqua;
+.users {
+  width: 100%;
 }
-.users_list h3{
-    color: #333;
-    font-weight: 900;
+.users h3 {
+  font-size: 2rem;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  background-color: #333;
+  padding: 10px;
+}
+.users_counter {
+  color: cadetblue;
+}
+.users_list {
+  width: 100%;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.user {
+  min-width: 25%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.remove_user_btn{
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border: 1px solid red;
+  font-size: 1rem;
+  width: 50%;
+}
+.remove_user_btn:hover{
+  background-color: #ffffff;
+  color: red;
+  border: 1px solid black;
 }

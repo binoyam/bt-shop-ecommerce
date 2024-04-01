@@ -1,14 +1,21 @@
-import  "./UsersList.css";
+import "./UsersList.css";
 
 function UsersList({ users }) {
+  // function to remove user from database
   return (
-    <div className="users_list">
-      <h3>Users:[{users.length}]</h3>
-      <ul>
+    <div className="users">
+      <h3>
+        Customers:
+        <span className="users_counter"> [{users.length}]</span>
+      </h3>
+      <ul className="users_list">
         {users.map((user) => (
-          <li key={user.id}>
-            Customer ID: [{user.id}] Name: [{user.name}], Email: [{user.email}],
-            Gender: [{user.gender}]{" "}
+          <li key={user.id} className="user">
+            <div className="user_id">Customer ID: [ {user.id} ]</div>
+            <div className="user_name">Name: [ {user.name} ]</div>
+            <div className="user_gender">Gender: [ {user.gender} ]</div>
+            <div className="user_email">Email: [ {user.email} ]</div>
+            <button className="remove_user_btn">Remove user</button>
           </li>
         ))}
       </ul>

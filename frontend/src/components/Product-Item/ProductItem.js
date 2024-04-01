@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ProductItem.css";
 import CartIcon from "../../Assets/Images/icon-cart-btn.svg";
+import removeIcon from "../../Assets/Images/close_btn.svg";
 
 function ProductItem({ product, addToCart, adminMode }) {
   console.log(adminMode);
@@ -14,7 +15,8 @@ function ProductItem({ product, addToCart, adminMode }) {
           <img src={CartIcon} alt="Cart" /> Add to Cart
         </button>
       ) : (
-        <button className="add-to-cart-btn">
+        <button className="remove_product_btn">
+          <img src={removeIcon} alt="remove product" /> 
           Remove Product
         </button>
       )}

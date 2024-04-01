@@ -8,12 +8,12 @@ function AdminPage({ adminMode }) {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
-  const [showCustomers, setShowCustomers] = useState(false);
+  const [showCustomers, setShowCustomers] = useState(true);
   const [showOrders, setShowOrders] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
-  console.log(users);
-  console.log(orders);
-  console.log(products);
+  // console.log(users);
+  // console.log(orders);
+  // console.log(products);
   useEffect(() => {
     fetchUsers();
     fetchOrders();
@@ -24,7 +24,7 @@ function AdminPage({ adminMode }) {
     try {
       const response = await fetch("/api/users");
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setUsers(data);
     } catch (error) {
       console.log("Error fetching users:", error);
@@ -89,7 +89,7 @@ function AdminPage({ adminMode }) {
         <button
           className="customerbtn"
           onClick={() => {
-            setShowCustomers(!showCustomers);
+            setShowCustomers(true);
             setShowOrders(false);
             setShowProducts(false);
           }}
@@ -101,7 +101,7 @@ function AdminPage({ adminMode }) {
           className="ordersbtn"
           onClick={() => {
             setShowCustomers(false);
-            setShowOrders(!showOrders);
+            setShowOrders(true);
             setShowProducts(false);
           }}
         >
@@ -113,7 +113,7 @@ function AdminPage({ adminMode }) {
           onClick={() => {
             setShowCustomers(false);
             setShowOrders(false);
-            setShowProducts(!showProducts);
+            setShowProducts(true);
           }}
         >
           Products

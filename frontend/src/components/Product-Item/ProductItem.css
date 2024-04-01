@@ -6,7 +6,6 @@
   padding: 20px;
   text-align: left;
   border-bottom-right-radius: 5px;
-  cursor: pointer;
   z-index: 9;
   position: relative; /* for view-details button*/
 }
@@ -91,3 +90,35 @@
 .add-to-cart-btn:active {
   scale: 1.1;
 }
+/* admin mode */
+.remove_product_btn {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 1px;
+  border: 1px solid transparent;
+  outline: none;
+  margin: 5px auto;
+  transition: 0.3s ease-in-out;
+}
+.remove_product_btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+.remove_product_btn:hover {
+  color: red;
+  background-color: #f7f7f7;
+  border: 1px solid red;
+  flex-direction: row-reverse;
+}
+.remove_product_btn:active {
+  scale: 1.1;
+}
+
