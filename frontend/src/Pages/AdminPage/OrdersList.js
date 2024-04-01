@@ -1,21 +1,50 @@
 import { useState } from "react";
 import "./OrdersList.css";
+import OrderItems from "./OrderItems";
 
-function OrdersList({ orders, onSort }) {
-  console.log(orders);
-  const [sortBy, setSortBy] = useState("userName");
-  const [sortedOrders, setSortedOrders] = useState(orders)
+function OrdersList({ orders }) {
+  // console.log(orders);
+  const [sortBy, setSortBy] = useState("all");
+  const [filteredOrders, setFilteredOrders] = useState(orders);
+  const [showUsers, setShowUsers] = useState(false);
+  const [showProducts, setShowProducts] = useState(false);
+
   const handleSort = (option) => {
     setSortBy(option);
-    const sortedOrders = [...orders].sort((a, b) => {
-      if (option === "userName") {
-        return a.user_name.localeCompare(b.user_name);
-      } else if (option === "productName") {
-        return a.product_name.localeCompare(b.product_name);
-      }
-    });
-    setSortedOrders(sortedOrders)
+    if (option === "userName") {
+      setShowUsers(true);
+      setShowProducts(false);
+    } else if (option === "productName") {
+      setShowUsers(false);
+      setShowProducts(true);
+    } else {
+      setShowUsers(false);
+      setShowProducts(false);
+      setFilteredOrders(orders);
+    }
   };
+
+  const orderOwners = orders.filter(
+    (order, index, self) =>
+      self.findIndex((o) => o.user_name === order.user_name) === index
+  );
+  const orderedProducts = orders.filter(
+    (order, index, self) =>
+      self.findIndex((o) => o.product_name === order.product_name) === index
+  );
+  const handleProductClick = (productName) => {
+    const users = orders.filter((order) => order.product_name === productName);
+    setFilteredOrders(users);
+    console.log(users); // You can replace this with your rendering logic
+  };
+  const handleUserClick = (userName) => {
+    const products = orders.filter((order) => order.user_name === userName);
+    setFilteredOrders(products);
+
+    console.log(products); // You can replace this with your rendering logic
+  };
+  // console.log(orderOwners);
+  // console.log(orderedProducts);
   return (
     <div className="orders">
       <h3>
@@ -23,25 +52,58 @@ function OrdersList({ orders, onSort }) {
         <span className="orders_counter"> [{orders.length}]</span>
       </h3>
       <div className="sort_orders_div">
-        <button onClick={() => handleSort("userName")}>Sort by User</button>
-        <button onClick={() => handleSort("productName")}>
+        <button
+          className="sort_by_product_btn"
+          onClick={() => handleSort("all")}
+        >
+          {sortBy} Orders
+        </button>
+        <button
+          className="sort_by_name_btn"
+          onClick={() => handleSort("userName")}
+        >
+          Sort by User
+        </button>
+        <button
+          className="sort_by_product_btn"
+          onClick={() => handleSort("productName")}
+        >
           Sort by Product
         </button>
       </div>
-      <ul className="orders_list">
-        {sortedOrders.map((order) => (
-          <li key={order.id} className="order">
-            <div className="order_id">Order ID: [ {order.id} ]</div>
-            <div className="orderer">Customer: [ {order.user_name} ]</div>
-            <div className="order_item">
-              Product Name: [ {order.product_name} ]
-            </div>
-            <div className="order_quantity">Quantity: [{order.quantity}]</div>
-            <div className="order_price">Price: [{order.price}]</div>
-            <button className="remove_order_btn">Remove Order</button>
-          </li>
-        ))}
-      </ul>
+      {showUsers && (
+        <div className="orders_by_user">
+          <h4>Users who placed orders</h4>
+          <div className="order_makers">
+            {orderOwners.map((order) => (
+              <button
+                className="order_maker"
+                key={order.id}
+                onClick={() => handleUserClick(order.user_name)}
+              >
+                {order.user_name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {showProducts && (
+        <ul className="orders_by_product">
+          <h4>Ordered Products</h4>
+          <div className="ordered_products">
+            {orderedProducts.map((order) => (
+              <button
+                className="order_product"
+                key={order.id}
+                onClick={() => handleProductClick(order.product_name)}
+              >
+                {order.product_name}
+              </button>
+            ))}
+          </div>
+        </ul>
+      )}
+      <OrderItems filteredOrders={filteredOrders} />
     </div>
   );
 }

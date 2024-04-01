@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem;
+  margin: 0.6rem;
 }
 .admin_panel button {
   padding: 10px;
@@ -21,7 +21,7 @@
   position: relative;
   background-color: #333;
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border-radius: 3px;
   font-weight: 600;
   letter-spacing: 1px;

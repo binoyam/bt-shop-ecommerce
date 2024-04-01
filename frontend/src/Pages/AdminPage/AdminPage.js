@@ -121,7 +121,7 @@ function AdminPage({ adminMode }) {
         </button>
       </div>
       {showCustomers && <UsersList users={users} />}
-      {showOrders && <OrdersList orders={orders} />}
+      {showOrders && <OrdersList orders={orders} users={users} products={products} />}
       {showProducts && (
         <ProductList adminMode={adminMode} products={products} />
       )}
