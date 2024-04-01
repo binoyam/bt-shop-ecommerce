@@ -1,15 +1,18 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_mysqldb import MySQL
+
 # user routes
 from routes.auth import auth_bp
 from routes.feedback import feedback_bp
 from routes.get_products import get_products_bp
 from routes.place_orders import place_orders_bp
+
 # admin routes
 from routes.admin_routes.users import users_bp
 from routes.admin_routes.orders import orders_bp
 from routes.admin_routes.products import products_bp
+from routes.admin_routes.remove_order import remove_order_bp
 
 app = Flask(__name__)
 mysql = MySQL()
@@ -31,6 +34,7 @@ app.register_blueprint(place_orders_bp)
 app.register_blueprint(users_bp)
 app.register_blueprint(orders_bp)
 app.register_blueprint(products_bp)
+app.register_blueprint(remove_order_bp)
 
 
 if __name__ == "__main__":

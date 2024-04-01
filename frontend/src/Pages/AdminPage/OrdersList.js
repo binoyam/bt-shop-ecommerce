@@ -2,12 +2,17 @@ import { useState } from "react";
 import "./OrdersList.css";
 import OrderItems from "./OrderItems";
 
-function OrdersList({ orders }) {
+function OrdersList({ orders, removeOrder }) {
   // console.log(orders);
   const [sortBy, setSortBy] = useState("all");
   const [filteredOrders, setFilteredOrders] = useState(orders);
   const [showUsers, setShowUsers] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
+
+  const handleRemoveOrder = (orderId) => {
+    removeOrder(orderId);
+    setFilteredOrders(orders);
+  };
 
   const handleSort = (option) => {
     setSortBy(option);
@@ -103,7 +108,10 @@ function OrdersList({ orders }) {
           </div>
         </ul>
       )}
-      <OrderItems filteredOrders={filteredOrders} />
+      <OrderItems
+        removeOrder={() => handleRemoveOrder()}
+        filteredOrders={filteredOrders}
+      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-function OrderItems({ filteredOrders }) {
+function OrderItems({ filteredOrders, removeOrder }) {
   return (
     <ul className="orders_list">
       {filteredOrders.map((order) => (
@@ -12,7 +12,12 @@ function OrderItems({ filteredOrders }) {
           </div>
           <div className="order_quantity">Quantity: [{order.quantity}]</div>
           <div className="order_price">Price: [{order.price}]</div>
-          <button className="remove_order_btn">Remove Order</button>
+          <button
+            className="remove_order_btn"
+            onClick={() => removeOrder(order.id)}
+          >
+            Remove Order
+          </button>
         </li>
       ))}
     </ul>

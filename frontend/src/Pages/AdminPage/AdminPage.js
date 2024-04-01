@@ -59,29 +59,29 @@ function AdminPage({ adminMode }) {
     }
   };
 
-  const removeUser = async (userId) => {
-    try {
-      await fetch(`/api/users/${userId}`, { method: "DELETE" });
-      fetchUsers();
-    } catch (error) {
-      console.log("Error removing user:", error);
-    }
-  };
+  // const removeUser = async (userId) => {
+  //   try {
+  //     await fetch(`/api/users/${userId}`, { method: "DELETE" });
+  //     fetchUsers();
+  //   } catch (error) {
+  //     console.log("Error removing user:", error);
+  //   }
+  // };
 
-  const addProduct = async (productName) => {
-    try {
-      await fetch("/api/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productName }),
-      });
-      fetchProducts();
-    } catch (error) {
-      console.log("Error adding product:", error);
-    }
-  };
+  // const addProduct = async (productName) => {
+  //   try {
+  //     await fetch("/api/products", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ productName }),
+  //     });
+  //     fetchProducts();
+  //   } catch (error) {
+  //     console.log("Error adding product:", error);
+  //   }
+  // };
   return (
     <div className="admin-page">
       <h1>ADMIN PANEL</h1>
@@ -121,7 +121,7 @@ function AdminPage({ adminMode }) {
         </button>
       </div>
       {showCustomers && <UsersList users={users} />}
-      {showOrders && <OrdersList orders={orders} users={users} products={products} />}
+      {showOrders && <OrdersList removeOrder={removeOrder} orders={orders} users={users} products={products} />}
       {showProducts && (
         <ProductList adminMode={adminMode} products={products} />
       )}
