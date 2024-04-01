@@ -9,9 +9,13 @@ function ProductItem({ product, addToCart, adminMode }) {
       <h3 className="product-title">{product.title.slice(0, 20)}</h3>
       <img className="product-image" src={product.image} alt={product.title} />
       <span className="product-price">${product.price}</span>
-      {!adminMode && (
+      {!adminMode ? (
         <button onClick={() => addToCart(product)} className="add-to-cart-btn">
           <img src={CartIcon} alt="Cart" /> Add to Cart
+        </button>
+      ) : (
+        <button className="add-to-cart-btn">
+          Remove Product
         </button>
       )}
 

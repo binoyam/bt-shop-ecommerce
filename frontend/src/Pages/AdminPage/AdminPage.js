@@ -84,25 +84,37 @@ function AdminPage({ adminMode }) {
   };
   return (
     <div className="admin-page">
-      <h2>Hey boss! What would you like to do today?</h2>
+      <h1>ADMIN PANEL</h1>
       <div className="admin_panel">
         <button
           className="customerbtn"
-          onClick={() => setShowCustomers(!showCustomers)}
+          onClick={() => {
+            setShowCustomers(!showCustomers);
+            setShowOrders(false);
+            setShowProducts(false);
+          }}
         >
           Customers
           <span className="counter">{users.length}</span>
         </button>
         <button
           className="ordersbtn"
-          onClick={() => setShowOrders(!showOrders)}
+          onClick={() => {
+            setShowCustomers(false);
+            setShowOrders(!showOrders);
+            setShowProducts(false);
+          }}
         >
           Orders
           <span className="counter">{orders.length}</span>
         </button>
         <button
           className="productsbtn"
-          onClick={() => setShowProducts(!showProducts)}
+          onClick={() => {
+            setShowCustomers(false);
+            setShowOrders(false);
+            setShowProducts(!showProducts);
+          }}
         >
           Products
           <span className="counter">{products.length}</span>
