@@ -13,5 +13,5 @@ def get_orders():
     cursor.execute("SELECT * FROM orders_table")
     orders = convert_to_objects(cursor)
     cursor.close()
-    print(orders)
+    # print(orders)
     return orders

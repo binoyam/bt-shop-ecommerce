@@ -8,7 +8,6 @@ mysql = MySQL()
 
 @get_products_bp.route("/api/products", methods=["GET"])
 def get_products():
-    print("hi")
     cursor = mysql.connection.cursor()
     cursor.execute("SELECT * FROM products_table")
     columns = [column[0] for column in cursor.description]

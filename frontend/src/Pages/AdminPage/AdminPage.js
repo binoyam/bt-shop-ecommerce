@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import "./AdminPage.css";
+import UsersList from "./UsersList";
+import OrdersList from "./OrdersList";
 import ProductList from "../../components/ProductList/ProductList";
-import ProductItem from "../../components/Product-Item/ProductItem";
 
-function AdminPage() {
+function AdminPage({ adminMode }) {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
+  const [showCustomers, setShowCustomers] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
+  const [showProducts, setShowProducts] = useState(false);
   console.log(users);
   console.log(orders);
   console.log(products);
@@ -81,35 +85,34 @@ function AdminPage() {
   return (
     <div className="admin-page">
       <h2>Hey boss! What would you like to do today?</h2>
-      <button>Customers</button>
-      <button>Orders</button>
-      <button>Products</button>
-      <h3>Users:[{users.length}]</h3>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            Customer ID: [{user.id}] Name: [{user.name}], Email: [{user.email}],
-            Gender: [{user.gender}]{" "}
-          </li>
-        ))}
-      </ul>
-
-      <h3>Orders:</h3>
-      <ul>
-        {orders.map((order) => (
-          <li key={order.id}>
-            Order ID: [{order.id}], Product: {order.product_name}, Quantity: [
-            {order.quantity}]
-          </li>
-        ))}
-      </ul>
-
-      <h3>Products:</h3>
-      <ul>
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-      </ul>
+      <div className="admin_panel">
+        <button
+          className="customerbtn"
+          onClick={() => setShowCustomers(!showCustomers)}
+        >
+          Customers
+          <span className="counter">{users.length}</span>
+        </button>
+        <button
+          className="ordersbtn"
+          onClick={() => setShowOrders(!showOrders)}
+        >
+          Orders
+          <span className="counter">{orders.length}</span>
+        </button>
+        <button
+          className="productsbtn"
+          onClick={() => setShowProducts(!showProducts)}
+        >
+          Products
+          <span className="counter">{products.length}</span>
+        </button>
+      </div>
+      {showCustomers && <UsersList users={users} />}
+      {showOrders && <OrdersList orders={orders} />}
+      {showProducts && (
+        <ProductList adminMode={adminMode} products={products} />
+      )}
     </div>
   );
 }

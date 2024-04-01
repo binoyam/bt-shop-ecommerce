@@ -1,8 +1,45 @@
 .admin-page {
-    width: 100%;
-    min-height: calc(100vh - 140px);
-    padding: 20px 20px 200px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: #ffffff;
-  }
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  padding: 20px 20px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #ffffff;
+}
+.admin_panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
+}
+.admin_panel button {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  background-color: #333;
+  color: #ffffff;
+  font-size: 1.3rem;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: none;
+}
+.admin_panel button:hover {
+  background-color: #c56f06;
+}
+.counter {
+  position: absolute;
+  padding: 5px;
+  min-width: 25px;
+  right: -5px;
+  top: -15px;
+  background-color: #ed9121;
+  color: #ffffff;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 700;
+}

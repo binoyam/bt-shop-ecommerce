@@ -1,7 +1,7 @@
 import ProductItem from '../Product-Item/ProductItem';
 import './ProductList.css';
 
-function ProductList({ products, addToCart }) {
+function ProductList({ products, addToCart, adminMode }) {
   const handleAddToCart = (product) => {
     addToCart(product, 1);
   };
@@ -12,6 +12,7 @@ function ProductList({ products, addToCart }) {
           key={product.id}
           product={product}
           addToCart={handleAddToCart}
+          adminMode={adminMode}
         />
       ))}
     </div>

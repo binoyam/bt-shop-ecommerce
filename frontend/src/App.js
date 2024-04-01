@@ -185,7 +185,13 @@ function App() {
 
       <main className="main-content">
         <Routes>
-          <Route path="/admin" element={<AdminPage adminMode={adminMode} />} />
+          {adminMode && (
+            <Route
+              path="/admin"
+              element={<AdminPage adminMode={adminMode} />}
+            />
+          )}
+
           <Route
             exact
             path="/"
@@ -227,13 +233,22 @@ function App() {
 
           <Route
             path="/products"
-            element={<ProductList addToCart={addToCart} products={products} />}
+            element={
+              <ProductList
+                addToCart={addToCart}
+                products={products}
+              />
+            }
           />
           <Route
             exact
             path="/products/:id"
             element={
-              <ProductDescription addToCart={addToCart} products={products} />
+              <ProductDescription
+                addToCart={addToCart}
+                products={products}
+                adminMode={adminMode}
+              />
             }
           />
 

@@ -6,7 +6,7 @@ import MinusIcon from "../../Assets/Images/icon-minus.svg";
 import Arrow from "../../Assets/Images/arrow-left.svg";
 import "./ProductDescription.css";
 
-function ProductDescription({ products, addToCart }) {
+function ProductDescription({ products, addToCart, adminMode }) {
   // /* SELECTED PRODUCT STATE */
   /* SELECTED QUANTITY STATE */
   const [selectedProduct, setSelectedProduct] = useState([]);
@@ -39,7 +39,7 @@ function ProductDescription({ products, addToCart }) {
   const { image, title, price, description } = selectedProduct;
   return (
     <div className="product-description-page">
-      <Link to="/categories/all" className="back-btn">
+      <Link to={!adminMode ? "/categories/all" : "/admin"} className="back-btn">
         <img src={Arrow} alt="arrow-left" />
         Back
       </Link>
@@ -53,24 +53,26 @@ function ProductDescription({ products, addToCart }) {
           <h1 className="prd-name">{title}</h1>
           <p className="prd-price">${price}</p>
           <p className="prd-description">{description}</p>
-          <div className="product-amount-cart">
-            <div className="quantity-selector">
-              <button className="minus-btn" onClick={decreaseQuantity}>
-                <img src={MinusIcon} alt="minus" />
+          {!adminMode && (
+            <div className="product-amount-cart">
+              <div className="quantity-selector">
+                <button className="minus-btn" onClick={decreaseQuantity}>
+                  <img src={MinusIcon} alt="minus" />
+                </button>
+                <span className="quantity">{quantity}</span>
+                <button className="plus-btn" onClick={increaseQuantity}>
+                  <img src={PlusIcon} alt="Plus" />
+                </button>
+              </div>
+              <button onClick={handleAddToCart} className="prd-add-to-cart">
+                Add to Cart
+                <img src={CartIcon} alt="Cart" />
               </button>
-              <span className="quantity">{quantity}</span>
-              <button className="plus-btn" onClick={increaseQuantity}>
-                <img src={PlusIcon} alt="Plus" />
-              </button>
+              <Link to="/checkout" className="prd-desc-checkout-btn">
+                Checkout
+              </Link>
             </div>
-            <button onClick={handleAddToCart} className="prd-add-to-cart">
-              Add to Cart
-              <img src={CartIcon} alt="Cart" />
-            </button>
-            <Link to="/checkout" className="prd-desc-checkout-btn">
-              Checkout
-            </Link>
-          </div>
+          )}
         </div>
       </div>
     </div>
