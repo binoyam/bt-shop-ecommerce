@@ -1,9 +1,12 @@
 import React from "react";
 
-function OrderItems({ filteredOrders, removeOrder }) {
+function OrderItems({ orders, removeOrder }) {
+  const handleRemoveOrder = (orderId) => {
+    removeOrder(orderId);
+  };
   return (
     <ul className="orders_list">
-      {filteredOrders.map((order) => (
+      {orders.map((order) => (
         <li key={order.id} className="order">
           <div className="orderer">Customer: [ {order.user_name} ]</div>
           <div className="order_id">Order ID: [ {order.id} ]</div>
@@ -12,9 +15,10 @@ function OrderItems({ filteredOrders, removeOrder }) {
           </div>
           <div className="order_quantity">Quantity: [{order.quantity}]</div>
           <div className="order_price">Price: [{order.price}]</div>
+          {console.log(order.id)}
           <button
             className="remove_order_btn"
-            onClick={() => removeOrder(order.id)}
+            onClick={() => handleRemoveOrder(order.id)}
           >
             Remove Order
           </button>

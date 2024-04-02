@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify, logging
 from flask_mysqldb import MySQL
 
 remove_order_bp = Blueprint("remove_order", __name__)
@@ -14,6 +14,9 @@ def remove_order(order_id):
         mysql.connection.commit()
 
         cursor.close()
-        return "Order removed successfully", 200
+        response_data = {"orderRemoved": True}
+        return jsonify(response_data), 200
     except Exception as e:
-        return str(e), 500
+        error_message = "An error occured while removing the order."
+        logging.error(f"{error_message} Error Details: {str(e)}")
+        return jsonify({"error": error_message}), 500

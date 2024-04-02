@@ -52,8 +52,13 @@ function AdminPage({ adminMode }) {
   };
   const removeOrder = async (orderId) => {
     try {
-      await fetch(`/api/orders/${orderId}`, { method: "DELETE" });
-      fetchOrders();
+      const response = await fetch(`/api/orders/${orderId}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (data.orderRemoved) {
+        fetchOrders();
+      }
     } catch (error) {
       console.log("Error removing order:", error);
     }
@@ -121,7 +126,14 @@ function AdminPage({ adminMode }) {
         </button>
       </div>
       {showCustomers && <UsersList users={users} />}
-      {showOrders && <OrdersList removeOrder={removeOrder} orders={orders} users={users} products={products} />}
+      {showOrders && (
+        <OrdersList
+          removeOrder={removeOrder}
+          orders={orders}
+          users={users}
+          products={products}
+        />
+      )}
       {showProducts && (
         <ProductList adminMode={adminMode} products={products} />
       )}

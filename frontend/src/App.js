@@ -76,7 +76,7 @@ function App() {
       price: price,
       title: title,
     }));
-    console.log(cartItemData);
+    // console.log(cartItemData);
     try {
       const response = await fetch("/api/place_order", {
         method: "POST",

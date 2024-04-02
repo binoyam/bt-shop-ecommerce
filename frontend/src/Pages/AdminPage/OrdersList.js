@@ -9,10 +9,6 @@ function OrdersList({ orders, removeOrder }) {
   const [showUsers, setShowUsers] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
 
-  const handleRemoveOrder = (orderId) => {
-    removeOrder(orderId);
-    setFilteredOrders(orders);
-  };
 
   const handleSort = (option) => {
     setSortBy(option);
@@ -61,7 +57,7 @@ function OrdersList({ orders, removeOrder }) {
           className="sort_by_product_btn"
           onClick={() => handleSort("all")}
         >
-          {sortBy} Orders
+          All Orders
         </button>
         <button
           className="sort_by_name_btn"
@@ -109,8 +105,8 @@ function OrdersList({ orders, removeOrder }) {
         </ul>
       )}
       <OrderItems
-        removeOrder={() => handleRemoveOrder()}
-        filteredOrders={filteredOrders}
+        removeOrder={removeOrder}
+        orders={orders}
       />
     </div>
   );
