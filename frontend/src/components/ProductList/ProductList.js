@@ -1,9 +1,12 @@
 import ProductItem from "../Product-Item/ProductItem";
 import "./ProductList.css";
 import addIcon from "../../Assets/Images/add_icon.svg";
-function ProductList({ products, addToCart, adminMode }) {
+function ProductList({ products, addToCart, adminMode, removeProduct }) {
   const handleAddToCart = (product) => {
     addToCart(product, 1);
+  };
+  const handleRemoveProduct = (productId) => {
+    removeProduct(productId);
   };
   return (
     <div className="products-list">
@@ -19,6 +22,7 @@ function ProductList({ products, addToCart, adminMode }) {
           product={product}
           addToCart={handleAddToCart}
           adminMode={adminMode}
+          handleRemoveProduct={handleRemoveProduct}
         />
       ))}
     </div>

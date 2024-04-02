@@ -37,7 +37,7 @@
   margin: 1rem 0;
 }
 .orders_by_user h4,
-.order_by_product h4 {
+.orders_by_product h4 {
   font-size: 1rem;
 }
 .order_makers,
@@ -61,17 +61,18 @@
   background-color: orange;
 }
 .orders_list {
+  width: 100%;
   color: #333;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
 }
 .order {
-  width: 100%;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  width: 40%;
+  border: 1px solid #ddd;
   padding: 10px;
   display: flex;
   flex-direction: column;

@@ -3,20 +3,24 @@ import "./OrdersList.css";
 import OrderItems from "./OrderItems";
 
 function OrdersList({ orders, removeOrder }) {
-  // console.log(orders);
-  const [sortBy, setSortBy] = useState("all");
+  console.log(orders);
+  const [sortBy, setSortBy] = useState();
   const [filteredOrders, setFilteredOrders] = useState(orders);
   const [showUsers, setShowUsers] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
-
-
+  const handleRemoveOrder = (orderId) => {
+    removeOrder(orderId);
+    setFilteredOrders(filteredOrders.filter((order) => order.id !== orderId));
+  };
   const handleSort = (option) => {
     setSortBy(option);
     if (option === "userName") {
       setShowUsers(true);
+      setFilteredOrders(orderOwners);
       setShowProducts(false);
     } else if (option === "productName") {
       setShowUsers(false);
+      setFilteredOrders(orderedProducts);
       setShowProducts(true);
     } else {
       setShowUsers(false);
@@ -24,7 +28,6 @@ function OrdersList({ orders, removeOrder }) {
       setFilteredOrders(orders);
     }
   };
-
   const orderOwners = orders.filter(
     (order, index, self) =>
       self.findIndex((o) => o.user_name === order.user_name) === index
@@ -36,13 +39,13 @@ function OrdersList({ orders, removeOrder }) {
   const handleProductClick = (productName) => {
     const users = orders.filter((order) => order.product_name === productName);
     setFilteredOrders(users);
-    console.log(users); // You can replace this with your rendering logic
+    console.log(users);
   };
   const handleUserClick = (userName) => {
     const products = orders.filter((order) => order.user_name === userName);
     setFilteredOrders(products);
 
-    console.log(products); // You can replace this with your rendering logic
+    console.log(products);
   };
   // console.log(orderOwners);
   // console.log(orderedProducts);
@@ -72,9 +75,13 @@ function OrdersList({ orders, removeOrder }) {
           Sort by Product
         </button>
       </div>
-      {showUsers && (
+      {showUsers && sortBy === "userName" && (
         <div className="orders_by_user">
-          <h4>Users who placed orders</h4>
+          {orders.length !== 0 ? (
+            <h4>Users who placed orders</h4>
+          ) : (
+            <h4>No users have ordered</h4>
+          )}
           <div className="order_makers">
             {orderOwners.map((order) => (
               <button
@@ -90,7 +97,11 @@ function OrdersList({ orders, removeOrder }) {
       )}
       {showProducts && (
         <ul className="orders_by_product">
-          <h4>Ordered Products</h4>
+          {orders.length !== 0 ? (
+            <h4>Ordered Products</h4>
+          ) : (
+            <h4>No Product ordered</h4>
+          )}
           <div className="ordered_products">
             {orderedProducts.map((order) => (
               <button
@@ -104,10 +115,7 @@ function OrdersList({ orders, removeOrder }) {
           </div>
         </ul>
       )}
-      <OrderItems
-        removeOrder={removeOrder}
-        orders={orders}
-      />
+      <OrderItems removeOrder={handleRemoveOrder} orders={filteredOrders} />
     </div>
   );
 }

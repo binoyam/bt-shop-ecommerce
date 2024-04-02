@@ -5,7 +5,7 @@ remove_order_bp = Blueprint("remove_order", __name__)
 
 mysql = MySQL()
 
-
+# remove order from table 
 @remove_order_bp.route("/api/orders/<int:order_id>", methods=["DELETE"])
 def remove_order(order_id):
     try:

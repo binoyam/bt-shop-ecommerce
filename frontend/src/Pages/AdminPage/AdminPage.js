@@ -58,20 +58,48 @@ function AdminPage({ adminMode }) {
       const data = await response.json();
       if (data.orderRemoved) {
         fetchOrders();
+        console.log(data);
+      } else {
+        console.log(data);
       }
     } catch (error) {
       console.log("Error removing order:", error);
     }
   };
+  const removeProduct = async (productId) => {
+    try {
+      const response = await fetch(`/api/remove_product/${productId}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (data.productRemoved) {
+        fetchProducts();
+        console.log(data);
+      } else {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("Error removing product:", error);
+    }
+  };
 
-  // const removeUser = async (userId) => {
-  //   try {
-  //     await fetch(`/api/users/${userId}`, { method: "DELETE" });
-  //     fetchUsers();
-  //   } catch (error) {
-  //     console.log("Error removing user:", error);
-  //   }
-  // };
+  const removeUser = async (userId) => {
+    try {
+      const response = await fetch(`/api/remove_user/${userId}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (data.userRemoved) {
+        fetchUsers();
+        fetchOrders();
+        console.log(data);
+      } else {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("Error removing user:", error);
+    }
+  };
 
   // const addProduct = async (productName) => {
   //   try {
@@ -125,7 +153,7 @@ function AdminPage({ adminMode }) {
           <span className="counter">{products.length}</span>
         </button>
       </div>
-      {showCustomers && <UsersList users={users} />}
+      {showCustomers && <UsersList removeUser={removeUser} users={users} />}
       {showOrders && (
         <OrdersList
           removeOrder={removeOrder}
@@ -135,7 +163,11 @@ function AdminPage({ adminMode }) {
         />
       )}
       {showProducts && (
-        <ProductList adminMode={adminMode} products={products} />
+        <ProductList
+          removeProduct={removeProduct}
+          adminMode={adminMode}
+          products={products}
+        />
       )}
     </div>
   );

@@ -5,7 +5,7 @@ from routes.helpers import convert_to_objects
 orders_bp = Blueprint("orders", __name__)
 
 mysql = MySQL()
-
+# get all users for admin page
 
 @orders_bp.route("/api/orders")
 def get_orders():
