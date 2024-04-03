@@ -8,7 +8,10 @@ function OrderItems({ orders, removeOrder }) {
           <div className="orderer">Customer: [ {order.user_name} ]</div>
           <div className="order_id">Order ID: [ {order.id} ]</div>
           <div className="order_item">
-            Product Name: [ {order.product_name} ]
+            Product Name: [ {order.product_name} ] 
+          </div>
+          <div className="product_id">
+            Product ID: [ {order.product_id} ] 
           </div>
           <div className="order_quantity">Quantity: [{order.quantity}]</div>
           <div className="order_price">Price: [{order.price}]</div>

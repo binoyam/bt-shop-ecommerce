@@ -4,7 +4,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  position: relative;
 }
+/* .filter_screen{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #33333360;
+  z-index: 99;
+} */
 /* admin mode/ add new product */
 .add_product {
   width: 100%;

@@ -33,7 +33,7 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
-  // console.log(orderedItems);
+  console.log(products);
   // console.log(cartItems);
   /* FUNCTION TO FETCH PRODUCTS */
   useEffect(() => {

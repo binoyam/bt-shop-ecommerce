@@ -27,7 +27,6 @@ function ProductItem({ product, addToCart, adminMode, handleRemoveProduct }) {
       <p className="product-description">
         {product.description.slice(0, 70)}...
       </p>
-        {console.log(product.id)}
       <Link className="view-details-link" to={`/products/${product.id}`}>
         <button className="view-more-btn">View Details</button>
       </Link>

@@ -72,12 +72,12 @@ function AdminPage({ adminMode }) {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error("Failed to remove product");
+        throw new Error("Failed to remove product: " + response.statusText);
       }
       const data = await response.json();
       if (data.productRemoved) {
         fetchProducts();
-        console.log("Product removed successfully",data);
+        console.log("Product removed successfully", data);
       } else {
         console.log("Failed to remove product:", data.error);
       }
@@ -104,20 +104,31 @@ function AdminPage({ adminMode }) {
     }
   };
 
-  // const addProduct = async (productName) => {
-  //   try {
-  //     await fetch("/api/products", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ productName }),
-  //     });
-  //     fetchProducts();
-  //   } catch (error) {
-  //     console.log("Error adding product:", error);
-  //   }
-  // };
+  const addProduct = async (product) => {
+    try {
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ product }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+
+      const data = await response.json();
+
+      if (data.productAdded) {
+        console.log("Product added successfully", data);
+        fetchProducts();
+      } else {
+        console.log("Failed to add product:", data.error);
+      }
+    } catch (error) {
+      console.log("Error adding product:", error);
+    }
+  };
   return (
     <div className="admin-page">
       <h1>ADMIN PANEL</h1>
@@ -170,6 +181,7 @@ function AdminPage({ adminMode }) {
           removeProduct={removeProduct}
           adminMode={adminMode}
           products={products}
+          addProduct={addProduct}
         />
       )}
     </div>

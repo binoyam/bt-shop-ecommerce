@@ -15,6 +15,7 @@ from routes.admin_routes.products import products_bp
 from routes.admin_routes.remove_order import remove_order_bp
 from routes.admin_routes.remove_user import remove_user_bp
 from routes.admin_routes.remove_product import remove_product_bp
+from routes.admin_routes.add_product import add_product_bp
 
 app = Flask(__name__)
 mysql = MySQL()
@@ -39,6 +40,7 @@ app.register_blueprint(products_bp)
 app.register_blueprint(remove_order_bp)
 app.register_blueprint(remove_user_bp)
 app.register_blueprint(remove_product_bp)
+app.register_blueprint(add_product_bp)
 
 
 if __name__ == "__main__":
