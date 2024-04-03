@@ -187,6 +187,7 @@ function App() {
         <Routes>
           {adminMode && (
             <Route
+              exact
               path="/admin"
               element={<AdminPage adminMode={adminMode} />}
             />
@@ -233,12 +234,7 @@ function App() {
 
           <Route
             path="/products"
-            element={
-              <ProductList
-                addToCart={addToCart}
-                products={products}
-              />
-            }
+            element={<ProductList addToCart={addToCart} products={products} />}
           />
           <Route
             exact

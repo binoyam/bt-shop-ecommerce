@@ -71,12 +71,15 @@ function AdminPage({ adminMode }) {
       const response = await fetch(`/api/remove_product/${productId}`, {
         method: "DELETE",
       });
+      if (!response.ok) {
+        throw new Error("Failed to remove product");
+      }
       const data = await response.json();
       if (data.productRemoved) {
         fetchProducts();
-        console.log(data);
+        console.log("Product removed successfully",data);
       } else {
-        console.log(data);
+        console.log("Failed to remove product:", data.error);
       }
     } catch (error) {
       console.log("Error removing product:", error);
