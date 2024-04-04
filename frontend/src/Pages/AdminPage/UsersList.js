@@ -4,7 +4,6 @@ function UsersList({ users, removeUser }) {
   const handleRemoveUser = (userId) => {
     removeUser(userId);
   };
-
   return (
     <div className="users">
       <h3>
@@ -18,12 +17,12 @@ function UsersList({ users, removeUser }) {
             <div className="user_name">Name: [ {user.name} ]</div>
             <div className="user_gender">Gender: [ {user.gender} ]</div>
             <div className="user_email">Email: [ {user.email} ]</div>
-            <button
+            {!user.isAdmin && <button
               className="remove_user_btn"
               onClick={() => handleRemoveUser(user.id)}
             >
               Remove user
-            </button>
+            </button>}
           </li>
         ))}
       </ul>

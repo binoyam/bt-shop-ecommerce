@@ -5,11 +5,8 @@ mysql = MySQL()
 
 
 def convert_to_objects(cursor):
-    # Get column names
     columns = [column[0] for column in cursor.description]
-    # Fetch all rows
     rows = cursor.fetchall()
-    # Convert rows to objects
     objects = [dict(zip(columns, row)) for row in rows]
     return objects
 

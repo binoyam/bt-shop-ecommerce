@@ -185,13 +185,10 @@ function App() {
 
       <main className="main-content">
         <Routes>
-          {adminMode && (
-            <Route
-              exact
-              path="/admin"
-              element={<AdminPage adminMode={adminMode} />}
-            />
-          )}
+          <Route
+            path="/admin"
+            element={<AdminPage adminMode={adminMode} />}
+          />
 
           <Route
             exact
