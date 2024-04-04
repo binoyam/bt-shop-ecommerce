@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./AddProductForm.css";
 
-function AddProductForm({ addProduct }) {
-  const [product, setProduct] = useState({
+function AddProductForm({ addProduct, closeForm }) {
+  const [newProduct, setNewProduct] = useState({
     category: "",
     description: "",
     image: "",
@@ -11,72 +11,86 @@ function AddProductForm({ addProduct }) {
   });
 
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call the addProduct function and pass the product object
-    // addProduct(product);
+    addProduct(newProduct);
 
-    console.log(product);
-    // Reset the form
-    setProduct({
-      category: "",
-      description: "",
-      image: "",
-      price: "",
-      title: "",
-    });
+    console.log(newProduct);
+    // setNewProduct({
+    //   category: "",
+    //   description: "",
+    //   image: "",
+    //   price: "",
+    //   title: "",
+    // });
   };
   return (
     <form onSubmit={handleSubmit} className="add_product_form">
-      <label>
-        Category:
+      <div className="cancel_btn" onClick={() => closeForm()}>
+        cancel
+      </div>
+      <div className="new_product_form_group">
+        <label htmlFor="title">Title:</label>
         <input
-          type="text"
-          name="category"
-          value={product.category}
-          onChange={handleChange}
-        />
-      </label>
-
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={product.description}
-          onChange={handleChange}
-        ></textarea>
-      </label>
-      <label>
-        Image Link:
-        <input
-          type="text"
-          name="image"
-          value={product.image}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={product.price}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Title:
-        <input
+          id="title"
           type="text"
           name="title"
-          value={product.title}
+          value={newProduct.title}
           onChange={handleChange}
+          required
         />
-      </label>
-      <button type="submit">Add Product</button>
+      </div>
+      <div className="new_product_form_group">
+        <label htmlFor="category">Category:</label>
+        <input
+          id="category"
+          type="text"
+          name="category"
+          value={newProduct.category}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="new_product_form_group">
+        <label htmlFor="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          value={newProduct.description}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
+      <div className="new_product_form_group">
+        <label htmlFor="price">Price:</label>
+        <input
+          id="price"
+          type="number"
+          name="price"
+          value={newProduct.price}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="new_product_form_group">
+        <label htmlFor="imageUrl">Image URL:</label>
+        <input
+          id="imageUrl"
+          type="url"
+          name="image"
+          value={newProduct.image}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <button className="add_product_btn" type="submit">
+        Add Product
+      </button>
     </form>
   );
 }

@@ -106,7 +106,7 @@ function AdminPage({ adminMode }) {
 
   const addProduct = async (product) => {
     try {
-      const response = await fetch("/api/products", {
+      const response = await fetch("/api/add_product", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

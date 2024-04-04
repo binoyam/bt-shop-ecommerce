@@ -63,8 +63,8 @@ function App() {
       setCartItems([]);
       setAdminMode(false);
       localStorage.setItem("customerData", "");
-      localStorage.setItem("cartItems", "");
       localStorage.setItem("orderedItems", "");
+      localStorage.setItem("cartItems", "");
     }
   };
   const handleCustomerOrder = async () => {

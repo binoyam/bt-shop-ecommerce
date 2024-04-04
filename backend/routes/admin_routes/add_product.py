@@ -9,22 +9,29 @@ mysql = MySQL()
 @add_product_bp.route("/api/add_product", methods=["POST"])
 def add_product():
     try:
-        product = request.get_json()
-        # Extract the product details from the request JSON
-        # Example code:
-        title = product.get("title")
+        product = request.get_json().get("product")
         category = product.get("category")
         description = product.get("description")
+        image = product.get("image")
         price = product.get("price")
-        # ...
+        title = product.get("title")
+        
+        cursor = mysql.connection.cursor()
 
-        # Perform the necessary logic to add the product to the database
-        # Example code:
-        # Your code to insert the product details into the database
-        # ...
+        sql = "INSERT INTO products_table (category, description, image, price, title) VALUES (%s, %s, %s, %s, %s)"
+        values = (
+            category,
+            description,
+            image,
+            price,
+            title,
+        )
+        cursor.execute(sql, values)
 
-        # Return a JSON response indicating that the product was added successfully
+        mysql.connection.commit()
+
+        cursor.close()
+
         return jsonify({"productAdded": True})
     except Exception as e:
-        # Handle the error case
         return jsonify({"error": str(e)}), 500
