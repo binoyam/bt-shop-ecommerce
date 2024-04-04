@@ -3,7 +3,6 @@ import "./OrdersList.css";
 import OrderItems from "./OrderItems";
 
 function OrdersList({ orders, removeOrder }) {
-  console.log(orders);
   const [sortBy, setSortBy] = useState();
   const [filteredOrders, setFilteredOrders] = useState(orders);
   const [showUsers, setShowUsers] = useState(false);

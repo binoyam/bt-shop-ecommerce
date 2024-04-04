@@ -19,13 +19,15 @@ function AddProductForm({ addProduct, closeForm }) {
     addProduct(newProduct);
 
     console.log(newProduct);
-    // setNewProduct({
-    //   category: "",
-    //   description: "",
-    //   image: "",
-    //   price: "",
-    //   title: "",
-    // });
+    setNewProduct({
+      category: "",
+      description: "",
+      image: "",
+      price: "",
+      title: "",
+    });
+    closeForm();
+    alert("Product added Succefully");
   };
   return (
     <form onSubmit={handleSubmit} className="add_product_form">
