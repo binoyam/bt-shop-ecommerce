@@ -45,4 +45,8 @@
   .products-list {
     place-items: center;
   }
+  .add_product_icon{
+    width: 40%;
+    height: 100px;
+  }
 }

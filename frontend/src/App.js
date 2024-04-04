@@ -233,7 +233,7 @@ function App() {
 
           <Route
             path="/products"
-            element={<ProductList addToCart={addToCart} products={products} />}
+            element={<ProductList adminMode={adminMode} addToCart={addToCart} products={products} />}
           />
           <Route
             exact

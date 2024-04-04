@@ -217,10 +217,9 @@
   .prd-description {
     width: 90%;
     font-size: 14px;
-    line-height: 1;
+    line-height: 1.3;
   }
   .product-amount-cart {
-    /* flex-direction: column; */
     gap: 10px;
   }
   .quantity-selector,
@@ -231,7 +230,7 @@
 }
 @media only screen and (max-width: 700px) {
   .product-image-div {
-    width: 100%;
+    width: 80%;
     height: 250px;
     padding-left: 1rem;
   }
@@ -240,7 +239,7 @@
   }
   .product-info {
     flex-direction: column;
-    gap: 2rem;
+    gap: 0rem;
   }
 
   .prd-name {
@@ -255,7 +254,7 @@
   }
   .prd-description {
     width: 100%;
-    text-align: justify;
+    text-align: left;
   }
   .product-amount-cart {
     flex-wrap: nowrap;
