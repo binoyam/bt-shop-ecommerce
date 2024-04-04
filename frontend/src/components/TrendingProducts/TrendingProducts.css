@@ -169,15 +169,30 @@
   /* gap: 5px; */
   padding: 15px 0;
 }
-@media only screen and (max-width:1060px ){
-  .trending-header{
+@media only screen and (max-width: 1060px) {
+  .trending-header {
     font-size: 30px;
     letter-spacing: 10px;
   }
 }
-@media only screen and (max-width:700px ){
-  .trending-header{
+@media only screen and (max-width: 700px) {
+  .trending-header {
     font-size: 23px;
     letter-spacing: 3px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .slide-wrapper {
+    width: 320px;
+    border: 1px solid #ed9121;
+  }
+  .trending-product-title {
+    font-size: 20px;
+  }
+  .rating {
+    font-size: 18px;
+  }
+  .trending-price{
+    width: 70%;
   }
 }

@@ -239,7 +239,7 @@
   }
   .product-info {
     flex-direction: column;
-    gap: 0rem;
+    gap: 1rem;
   }
 
   .prd-name {
