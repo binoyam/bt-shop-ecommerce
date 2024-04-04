@@ -177,9 +177,7 @@
 }
 /* CHECKOUT BUTTON */
 .prd-desc-checkout-btn {
-  /* display: block; */
   width: 30%;
-  /* height: 35px; */
   padding: 5px 0;
   background-color: #ed9121;
   color: white;
@@ -231,7 +229,7 @@
 @media only screen and (max-width: 700px) {
   .product-image-div {
     width: 80%;
-    height: 250px;
+    height: 150px;
     padding-left: 1rem;
   }
   .product-details {
@@ -255,6 +253,7 @@
   .prd-description {
     width: 100%;
     text-align: left;
+    line-height: 1.1;
   }
   .product-amount-cart {
     flex-wrap: nowrap;
@@ -262,7 +261,7 @@
 }
 @media only screen and (max-width: 500px) {
   .product-description-page {
-    padding: 10px;
+    padding: 20px;
   }
   .product-details {
     width: 100%;
@@ -278,5 +277,8 @@
   .back-btn img {
     width: 15px;
     height: 13px;
+  }
+  .prd-description {
+    line-height: 1;
   }
 }

@@ -9,7 +9,7 @@ import BitcoinForm from "../../components/PaymentForms/BitcoinForm";
 
 function PaymentPage({ customerData, isLoggedIn, orderedItems }) {
   const [selectedPayMethod, setSelectedPayMethod] = useState("creditcard");
-  // console.log(orderedItems);
+  console.log(orderedItems);
   // const TAX_RATE = 0.15;
   const calculateTotal = () => {
     let total = 0;
@@ -35,8 +35,8 @@ function PaymentPage({ customerData, isLoggedIn, orderedItems }) {
             </p>
           </div>
         )}
-        <ul className="orders_list">
-          <div>You have ordered {orderedItems.length} items</div>
+        <ul className="ordered_prds_list">
+          <div className="list_header">You have ordered {orderedItems.length} items</div>
           {orderedItems.map((item) => (
             <li key={item.orderId}>
               <div className="prdId">Product ID: {item.productId}</div>

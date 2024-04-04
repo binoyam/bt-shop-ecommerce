@@ -1,41 +1,61 @@
 .payment-page {
   width: 100%;
   min-height: calc(100vh - 140px);
-  padding: 20px;
+  height: 100%;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #ffffff;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 1rem;
 }
-.payment_page_header{
-  padding: 1rem 0;
-  color: #333;
+.orders_info {
+  width: 50%;
+  padding: 10px;
+  background-color: #333;
+}
+.payment_page_header {
+  padding: 1rem;
+  color: #ffffff;
   font-weight: 600;
   font-size: 1rem;
-
+  background-color: #ed9121;
 }
-.orders_list{
+.pph_txt {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #333;
+}
+.ordered_prds_list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 10px 0;
   color: #ed9121;
 }
-
+.list_header {
+  font-size: 1.2rem;
+}
+.prdprice{
+  color: #333;
+}
+.ordered_prds_list li {
+  padding: 10px;
+  background-color: #e7e9f5;
+}
 .current-total-div {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 5px;
   padding: 10px;
-  background-color: #000000c9;
-  color: #f0d4b2;
 }
 .current-total-pre {
   color: #ffffff;
 }
 .current-total {
+  font-size: 1.2rem;
   color: cadetblue;
 }
 /* PAYMENT METHODS */

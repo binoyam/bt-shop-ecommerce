@@ -93,6 +93,7 @@ function App() {
         setCartItems([]);
         console.log(orderedItems);
         localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
+        localStorage.setItem("cartItems", "");
       } else {
         console.log("Order NOT placed:", data);
       }
@@ -233,7 +234,13 @@ function App() {
 
           <Route
             path="/products"
-            element={<ProductList adminMode={adminMode} addToCart={addToCart} products={products} />}
+            element={
+              <ProductList
+                adminMode={adminMode}
+                addToCart={addToCart}
+                products={products}
+              />
+            }
           />
           <Route
             exact

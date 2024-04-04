@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.signup_txt{
+.signup_txt {
   font-size: 1rem;
   color: #333;
   font-weight: 600;
@@ -135,5 +135,24 @@
 @media only screen and (max-width: 700px) {
   .user-account-popup.show {
     width: 80%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .user-account-popup.show {
+    width: 85%;
+  }
+  .signup_txt{
+    font-size: 0.8rem;
+  }
+  .login_signup_div {
+    gap: 1rem;
+  }
+  .login_signup_btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .login_btn,
+  .signup_btn {
+    width: 100%;
   }
 }
