@@ -1,10 +1,10 @@
 import ProductList from "../ProductList/ProductList";
 
-function Womens({ addToCart, products }) {
+function Womens({ addToCart, products, adminMode }) {
   const filteredProducts = products.filter(
     (product) => product.category === "women's clothing"
   );
-  return <ProductList products={filteredProducts} addToCart={addToCart} />;
+  return <ProductList adminMode={adminMode} products={filteredProducts} addToCart={addToCart} />;
 }
 
 export default Womens;

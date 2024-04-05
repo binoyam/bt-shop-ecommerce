@@ -203,29 +203,29 @@ function App() {
 
           <Route
             path="/categories"
-            element={<Categories addToCart={addToCart} products={products} />}
+            element={<Categories adminMode={adminMode} addToCart={addToCart} products={products} />}
           >
             <Route
               path="all"
-              element={<All addToCart={addToCart} products={products} />}
+              element={<All adminMode={adminMode} addToCart={addToCart} products={products} />}
             />
             <Route
               path="mens-clothing"
-              element={<Mens addToCart={addToCart} products={products} />}
+              element={<Mens adminMode={adminMode} addToCart={addToCart} products={products} />}
             />
             <Route
               path="womens-clothing"
-              element={<Womens addToCart={addToCart} products={products} />}
+              element={<Womens adminMode={adminMode} addToCart={addToCart} products={products} />}
             />
             <Route
               path="electronics"
               element={
-                <Electronics addToCart={addToCart} products={products} />
+                <Electronics adminMode={adminMode} addToCart={addToCart} products={products} />
               }
             />
             <Route
               path="jewelery"
-              element={<Jewelery addToCart={addToCart} products={products} />}
+              element={<Jewelery adminMode={adminMode} addToCart={addToCart} products={products} />}
             />
           </Route>
 

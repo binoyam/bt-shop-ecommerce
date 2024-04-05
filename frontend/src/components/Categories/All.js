@@ -1,8 +1,8 @@
 import ProductList from "../ProductList/ProductList";
 
-function All({ addToCart, products }) {
+function All({ addToCart, products, adminMode }) {
   const filteredProducts = products.filter(() => true);
-  return <ProductList products={filteredProducts} addToCart={addToCart} />;
+  return <ProductList adminMode={adminMode} products={filteredProducts} addToCart={addToCart} />;
 }
 
 export default All;
