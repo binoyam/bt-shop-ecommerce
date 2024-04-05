@@ -12,6 +12,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const [userRating, setUserRating] = useState(null)
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
   useEffect(() => {
@@ -36,7 +37,11 @@ function ProductDescription({ products, addToCart, adminMode }) {
       setQuantity(quantity - 1);
     }
   };
+  const handleRatingChange = (event) => {
+    setUserRating(event.target.value);
+  };
   const { image, title, price, description } = selectedProduct;
+  console.log(selectedProduct);
   return (
     <div className="product-description-page">
       <Link to={!adminMode ? "/categories/all" : "/admin"} className="back-btn">
@@ -75,6 +80,20 @@ function ProductDescription({ products, addToCart, adminMode }) {
           )}
         </div>
       </div>
+      <form className="product_rating_form">
+        <label>
+          Rating:{userRating}
+          <input
+            type="range"
+            min="0"
+            max="5"
+            step="0.1"
+            value={userRating || ''}
+            onChange={handleRatingChange}
+          />
+        </label>
+        <button type="submit">Submit Rating</button>
+      </form>
     </div>
   );
 }

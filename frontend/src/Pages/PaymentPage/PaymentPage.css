@@ -59,6 +59,10 @@
   color: cadetblue;
 }
 /* PAYMENT METHODS */
+.payment_wrapper{
+  width: 50%;
+}
+
 .payment-methods {
   text-align: center;
   width: 100%;

@@ -1,10 +1,13 @@
 .admin-page {
   width: 100%;
   min-height: calc(100vh - 140px);
-  padding: 20px 20px;
+  padding: 10px 10px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #ffffff;
+}
+.admin-page h1 {
+  font-size: 1.4rem;
 }
 .admin_panel {
   display: flex;
@@ -47,4 +50,21 @@
 }
 .selected {
   background-color: cadetblue;
+}
+/* NOT ADMIN POP UP */
+.not_admin {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  transform: translateY(-50%);
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  z-index: 999;
+  border: 3px solid black;
 }

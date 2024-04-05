@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AdminPage.css";
 import UsersList from "./UsersList";
 import OrdersList from "./OrdersList";
@@ -11,14 +12,25 @@ function AdminPage({ adminMode }) {
   const [showCustomers, setShowCustomers] = useState(true);
   const [showOrders, setShowOrders] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
-  // console.log(users);
-  // console.log(orders);
-  // console.log(products);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate();
   useEffect(() => {
-    fetchUsers();
-    fetchOrders();
-    fetchProducts();
-  }, []);
+    if (adminMode) {
+      fetchUsers();
+      fetchOrders();
+      fetchProducts();
+      setShowPopup(false);
+    } else {
+      setShowPopup(true);
+      const timeout = setTimeout(() => {
+        setShowPopup(false);
+        navigate("/home");
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [adminMode, navigate]);
+
   const handleOptionClick = (showCust, showOrd, showProd) => {
     setShowCustomers(showCust);
     setShowOrders(showOrd);
@@ -135,30 +147,40 @@ function AdminPage({ adminMode }) {
   };
   return (
     <div className="admin-page">
-      <h1>ADMIN PANEL</h1>
-      <div className="admin_panel">
-        <button
-          className={`customerbtn ${showCustomers ? "selected" : ""}`}
-          onClick={() => handleOptionClick(true, false, false)}
-        >
-          Customers
-          <span className="counter">{users.length}</span>
-        </button>
-        <button
-          className={`ordersbtn ${showOrders ? "selected" : ""}`}
-          onClick={() => handleOptionClick(false, true, false)}
-        >
-          Orders
-          <span className="counter">{orders.length}</span>
-        </button>
-        <button
-          className={`productsbtn ${showProducts ? "selected" : ""}`}
-          onClick={() => handleOptionClick(false, false, true)}
-        >
-          Products
-          <span className="counter">{products.length}</span>
-        </button>
-      </div>
+      {adminMode && (
+        <div>
+          <h1>ADMIN PANEL</h1>
+          <div className="admin_panel">
+            <button
+              className={`customerbtn ${showCustomers ? "selected" : ""}`}
+              onClick={() => handleOptionClick(true, false, false)}
+            >
+              Customers
+              <span className="counter">{users.length}</span>
+            </button>
+            <button
+              className={`ordersbtn ${showOrders ? "selected" : ""}`}
+              onClick={() => handleOptionClick(false, true, false)}
+            >
+              Orders
+              <span className="counter">{orders.length}</span>
+            </button>
+            <button
+              className={`productsbtn ${showProducts ? "selected" : ""}`}
+              onClick={() => handleOptionClick(false, false, true)}
+            >
+              Products
+              <span className="counter">{products.length}</span>
+            </button>
+          </div>
+        </div>
+      )}
+      {showPopup && (
+        <div className="not_admin">
+          YOU ARE NOT AUTHORIZED! <br />
+          <small>You will be redirected to HomePage</small>
+        </div>
+      )}
       {showCustomers && <UsersList removeUser={removeUser} users={users} />}
       {showOrders && (
         <OrdersList

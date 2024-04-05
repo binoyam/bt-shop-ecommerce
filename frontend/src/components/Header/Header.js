@@ -50,9 +50,13 @@ function Header({
           </Link>
         )}
 
-        <div onClick={toggleUserPopup} className="user-profile-pic">
+        <div
+          onClick={toggleUserPopup}
+          className={`user-profile-pic ${isLoggedIn ? "logged_in" : ""}`}
+        >
           <img src={UserIcon} alt="avatar" />
         </div>
+
         {isAccountPopupOpen && (
           <UserAccountPopup
             isLoggedIn={isLoggedIn}

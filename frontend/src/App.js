@@ -185,7 +185,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
-          <Route
+           <Route
             path="/admin"
             element={<AdminPage adminMode={adminMode} />}
           />
