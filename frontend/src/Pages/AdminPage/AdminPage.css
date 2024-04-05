@@ -13,7 +13,9 @@
   gap: 1rem;
   margin: 0.6rem;
 }
-.admin_panel button {
+.customerbtn,
+.ordersbtn,
+.productsbtn {
   padding: 10px;
   display: flex;
   align-items: center;
@@ -29,7 +31,7 @@
   border: none;
 }
 .admin_panel button:hover {
-  background-color: #c56f06;
+  background-color: cadetblue;
 }
 .counter {
   position: absolute;
@@ -42,4 +44,7 @@
   border-radius: 3px;
   font-size: 14px;
   font-weight: 700;
+}
+.selected {
+  background-color: cadetblue;
 }

@@ -6,10 +6,6 @@ function UsersList({ users, removeUser }) {
   };
   return (
     <div className="users">
-      <h3>
-        Customers:
-        <span className="users_counter"> [{users.length}]</span>
-      </h3>
       <ul className="users_list">
         {users.map((user) => (
           <li key={user.id} className="user">
@@ -17,12 +13,14 @@ function UsersList({ users, removeUser }) {
             <div className="user_name">Name: [ {user.name} ]</div>
             <div className="user_gender">Gender: [ {user.gender} ]</div>
             <div className="user_email">Email: [ {user.email} ]</div>
-            {!user.isAdmin && <button
-              className="remove_user_btn"
-              onClick={() => handleRemoveUser(user.id)}
-            >
-              Remove user
-            </button>}
+            {!user.isAdmin && (
+              <button
+                className="remove_user_btn"
+                onClick={() => handleRemoveUser(user.id)}
+              >
+                Remove user
+              </button>
+            )}
           </li>
         ))}
       </ul>

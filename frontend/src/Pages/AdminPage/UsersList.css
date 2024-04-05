@@ -1,17 +1,6 @@
 .users {
   width: 100%;
 }
-.users h3 {
-  font-size: 1rem;
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 1rem;
-  background-color: #333;
-  padding: 10px;
-}
-.users_counter {
-  color: cadetblue;
-}
 .users_list {
   width: 100%;
   color: #333;
@@ -22,23 +11,26 @@
   gap: 1rem;
 }
 .user {
-  min-width: 31.33%;
+  width: 31.33%;
+  min-width: 30%;
+  max-width: 40%;
   border: 1px solid #ddd;
-  padding: 20px;
+  padding: 10px;
   display: flex;
+  align-items: stretch;
   flex-direction: column;
+  justify-content: space-between;
   gap: 5px;
   color: #333;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.7rem;
 }
 .remove_user_btn{
   background-color: red;
   color: white;
-  padding: 5px;
+  padding: 7px;
   border: 1px solid red;
-  font-size: 1rem;
-  /* width: 50%; */
+  font-size: 0.7rem;
 }
 .remove_user_btn:hover{
   background-color: #ffffff;

@@ -3,7 +3,7 @@ import "./OrdersList.css";
 import OrderItems from "./OrderItems";
 
 function OrdersList({ orders, removeOrder }) {
-  const [sortBy, setSortBy] = useState();
+  const [sortBy, setSortBy] = useState("all");
   const [filteredOrders, setFilteredOrders] = useState(orders);
   const [showUsers, setShowUsers] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -50,25 +50,27 @@ function OrdersList({ orders, removeOrder }) {
   // console.log(orderedProducts);
   return (
     <div className="orders">
-      <h3>
-        Orders:
-        <span className="orders_counter"> [{orders.length}]</span>
-      </h3>
       <div className="sort_orders_div">
         <button
-          className="sort_by_product_btn"
+          className={`sort_by_product_btn ${
+            sortBy === "all" ? "selected_sort" : ""
+          }`}
           onClick={() => handleSort("all")}
         >
           All Orders
         </button>
         <button
-          className="sort_by_name_btn"
+          className={`sort_by_name_btn ${
+            sortBy === "userName" ? "selected_sort" : ""
+          }`}
           onClick={() => handleSort("userName")}
         >
           Sort by User
         </button>
         <button
-          className="sort_by_product_btn"
+          className={`sort_by_product_btn ${
+            sortBy === "productName" ? "selected_sort" : ""
+          }`}
           onClick={() => handleSort("productName")}
         >
           Sort by Product

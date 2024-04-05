@@ -19,7 +19,11 @@ function AdminPage({ adminMode }) {
     fetchOrders();
     fetchProducts();
   }, []);
-
+  const handleOptionClick = (showCust, showOrd, showProd) => {
+    setShowCustomers(showCust);
+    setShowOrders(showOrd);
+    setShowProducts(showProd);
+  };
   const fetchUsers = async () => {
     try {
       const response = await fetch("/api/users");
@@ -134,34 +138,22 @@ function AdminPage({ adminMode }) {
       <h1>ADMIN PANEL</h1>
       <div className="admin_panel">
         <button
-          className="customerbtn"
-          onClick={() => {
-            setShowCustomers(true);
-            setShowOrders(false);
-            setShowProducts(false);
-          }}
+          className={`customerbtn ${showCustomers ? "selected" : ""}`}
+          onClick={() => handleOptionClick(true, false, false)}
         >
           Customers
           <span className="counter">{users.length}</span>
         </button>
         <button
-          className="ordersbtn"
-          onClick={() => {
-            setShowCustomers(false);
-            setShowOrders(true);
-            setShowProducts(false);
-          }}
+          className={`ordersbtn ${showOrders ? "selected" : ""}`}
+          onClick={() => handleOptionClick(false, true, false)}
         >
           Orders
           <span className="counter">{orders.length}</span>
         </button>
         <button
-          className="productsbtn"
-          onClick={() => {
-            setShowCustomers(false);
-            setShowOrders(false);
-            setShowProducts(true);
-          }}
+          className={`productsbtn ${showProducts ? "selected" : ""}`}
+          onClick={() => handleOptionClick(false, false, true)}
         >
           Products
           <span className="counter">{products.length}</span>
