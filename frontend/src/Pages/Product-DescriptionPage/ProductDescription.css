@@ -197,31 +197,39 @@
 /* PRODUCT RATING */
 .rate_prd_btn{
   position: absolute;
-  top: 0;
+  top: 20%;
   left:50% ;
   transform: translateX(-50%);
-  padding: 10px;
-  border: none;
-  background-color: rgba(0, 128, 128, 0.651);
-  color: white;
-  border-radius: 3px;
+  padding: 7px 5px 5px;
+  border: 2px solid #ed9121 ;
+  background-color: #fff;
+  color: #333;
+  border-radius: 1px;
   display: flex;
   align-items: center;
   letter-spacing: 2px;
   font-size: 12px;
-  gap: 10px;
+  gap: 5px;
+  line-height: 1;
+  transition: all 0.3s ease;
 }
 .rate_prd_btn img{
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+  width: 14px;
+  height: 14px;
+  object-fit: cover;
+}
+.rate_prd_btn:hover{
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #333 ;
+
 }
 .product_rating_form {
   position: absolute;
   padding: 20px 30px;
-  top: 50%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translateX(-50%);
   background-color: #eee7e7fa;
   border: 1px solid #ddd;
   border-radius: 10px;

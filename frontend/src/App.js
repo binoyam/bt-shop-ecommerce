@@ -163,7 +163,24 @@ function App() {
       setOrderedItems(JSON.parse(storedOrders));
     }
   }, []);
-
+  const submitRating = async (rating, product_id) => {
+    try {
+      const response = await fetch("/api/rate_product", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rating, product_id }),
+      });
+      if (response.ok) {
+        console.log("Rating inserted successfully!");
+      } else {
+        throw new Error("Rating insertion failed.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="App">
       <Header
@@ -185,10 +202,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
-           <Route
-            path="/admin"
-            element={<AdminPage adminMode={adminMode} />}
-          />
+          <Route path="/admin" element={<AdminPage adminMode={adminMode} />} />
 
           <Route
             exact
@@ -203,29 +217,63 @@ function App() {
 
           <Route
             path="/categories"
-            element={<Categories adminMode={adminMode} addToCart={addToCart} products={products} />}
+            element={
+              <Categories
+                adminMode={adminMode}
+                addToCart={addToCart}
+                products={products}
+              />
+            }
           >
             <Route
               path="all"
-              element={<All adminMode={adminMode} addToCart={addToCart} products={products} />}
+              element={
+                <All
+                  adminMode={adminMode}
+                  addToCart={addToCart}
+                  products={products}
+                />
+              }
             />
             <Route
               path="mens-clothing"
-              element={<Mens adminMode={adminMode} addToCart={addToCart} products={products} />}
+              element={
+                <Mens
+                  adminMode={adminMode}
+                  addToCart={addToCart}
+                  products={products}
+                />
+              }
             />
             <Route
               path="womens-clothing"
-              element={<Womens adminMode={adminMode} addToCart={addToCart} products={products} />}
+              element={
+                <Womens
+                  adminMode={adminMode}
+                  addToCart={addToCart}
+                  products={products}
+                />
+              }
             />
             <Route
               path="electronics"
               element={
-                <Electronics adminMode={adminMode} addToCart={addToCart} products={products} />
+                <Electronics
+                  adminMode={adminMode}
+                  addToCart={addToCart}
+                  products={products}
+                />
               }
             />
             <Route
               path="jewelery"
-              element={<Jewelery adminMode={adminMode} addToCart={addToCart} products={products} />}
+              element={
+                <Jewelery
+                  adminMode={adminMode}
+                  addToCart={addToCart}
+                  products={products}
+                />
+              }
             />
           </Route>
 
@@ -247,6 +295,7 @@ function App() {
                 addToCart={addToCart}
                 products={products}
                 adminMode={adminMode}
+                submitRating={submitRating}
               />
             }
           />

@@ -7,6 +7,7 @@ from routes.auth import auth_bp
 from routes.feedback import feedback_bp
 from routes.get_products import get_products_bp
 from routes.place_orders import place_orders_bp
+from routes.rate_product import rate_product_bp
 
 # admin routes
 from routes.admin_routes.users import users_bp
@@ -33,6 +34,7 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(feedback_bp)
 app.register_blueprint(get_products_bp)
 app.register_blueprint(place_orders_bp)
+app.register_blueprint(rate_product_bp)
 # admin routes
 app.register_blueprint(users_bp)
 app.register_blueprint(orders_bp)

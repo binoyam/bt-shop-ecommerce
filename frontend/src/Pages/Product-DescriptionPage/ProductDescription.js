@@ -9,13 +9,14 @@ import ThumbsDownIcon from "../../Assets/Images/thumbs_down.svg";
 import StarIcon from "../../Assets/Images/star_icon.svg";
 import "./ProductDescription.css";
 
-function ProductDescription({ products, addToCart, adminMode }) {
+function ProductDescription({ products, addToCart, adminMode, submitRating }) {
   // /* SELECTED PRODUCT STATE */
   /* SELECTED QUANTITY STATE */
   const [selectedProduct, setSelectedProduct] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [userRating, setUserRating] = useState(null);
+  const [rating, setRating] = useState(null);
+  const [showRating, setShowRating] = useState(false);
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
   useEffect(() => {
@@ -41,21 +42,25 @@ function ProductDescription({ products, addToCart, adminMode }) {
     }
   };
   const handleRatingChange = (event) => {
-    setUserRating(event.target.value);
+    setRating(event.target.value);
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowRating(false);
+    setRating("");
+    submitRating(rating, id);
+    alert("Thank you for your feedback!");
+  };
+  console.log("User rating:", rating, id);
+
   const { image, title, price, description } = selectedProduct;
-  console.log(selectedProduct);
+  // console.log(selectedProduct);
   return (
     <div className="product-description-page">
       <Link to={!adminMode ? "/categories/all" : "/admin"} className="back-btn">
         <img src={Arrow} alt="arrow-left" />
         Back
       </Link>
-
-      <button className="rate_prd_btn">
-        <img src={StarIcon} alt="star" />
-        Rate Product
-      </button>
 
       <div className="product-info">
         <div className="product-image-div">
@@ -88,26 +93,39 @@ function ProductDescription({ products, addToCart, adminMode }) {
           )}
         </div>
       </div>
-      <form className="product_rating_form">
-        <label htmlFor="prd_rating">Rating: {userRating} / 5</label>
-        <div className="rating_input">
-          <img className="thumbs_down" src={ThumbsDownIcon} alt="thumbs down" />
-          <input
-            id="prd_rating"
-            className="rating_range"
-            type="range"
-            min="0"
-            max="5"
-            step="0.1"
-            value={userRating || ""}
-            onChange={handleRatingChange}
-          />
-          <img className="thumbs_up" src={ThumbsUpIcon} alt="thumbs up" />
-        </div>
-        <button className="submit_rate_btn" type="submit">
-          Submit
-        </button>
-      </form>
+      <button
+        onClick={() => setShowRating(!showRating)}
+        className="rate_prd_btn"
+      >
+        <img src={StarIcon} alt="star" />
+        Rate Product
+      </button>
+      {showRating && (
+        <form onSubmit={handleSubmit} className="product_rating_form">
+          <label htmlFor="prd_rating">Rating: {rating} / 5</label>
+          <div className="rating_input">
+            <img
+              className="thumbs_down"
+              src={ThumbsDownIcon}
+              alt="thumbs down"
+            />
+            <input
+              id="prd_rating"
+              className="rating_range"
+              type="range"
+              min="0"
+              max="5"
+              step="0.1"
+              value={rating || ""}
+              onChange={handleRatingChange}
+            />
+            <img className="thumbs_up" src={ThumbsUpIcon} alt="thumbs up" />
+          </div>
+          <button className="submit_rate_btn" type="submit">
+            Submit
+          </button>
+        </form>
+      )}
     </div>
   );
 }

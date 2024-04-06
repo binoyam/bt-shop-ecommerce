@@ -145,6 +145,7 @@ function AdminPage({ adminMode }) {
       console.log("Error adding product:", error);
     }
   };
+
   return (
     <div className="admin-page">
       {adminMode && (
