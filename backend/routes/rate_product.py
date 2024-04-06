@@ -10,10 +10,10 @@ mysql = MySQL()
 def rate_product():
     data = request.json
     product_id = data.get("product_id")
-    rating = data.get("rating")
+    rating = float(data.get("rating"))
     print(data)
-    print(product_id)
-    print(rating)
+    print(type(product_id))
+    print(type(rating))
     try:
         cursor = mysql.connection.cursor()
         select_query = (
@@ -24,32 +24,41 @@ def rate_product():
             select_query,
             (product_id,),
         )
-        prevRating = cursor.fetchone()
-        print(prevRating)
-        prev_count = prevRating[0]
-        prev_rating = prevRating[1]
-        print(prev_count)
-        print(prev_rating)
+        rating_data = cursor.fetchone()
+        prev_count = rating_data[0] if rating_data else 0
+        prev_rating = rating_data[1] if rating_data else None
+        print(rating_data)
+        print(type(prev_count))
+        print(type(prev_rating))
 
-        new_count = prev_count + 1
-        new_rating = (prev_rating * prev_count + rating) / new_count
+        if prev_count == 0:
+            new_count = 1
+        else:
+            new_count = prev_count + 1
+        if prev_rating is None:
+            new_rating = rating / new_count
+        else:
+            new_rating = (prev_rating * prev_count + rating) / new_count
+
         new_rating_rounded = round(new_rating, 1)
-        print(new_count)
+
+        print(type(new_count))
         print(new_rating)
         print(new_rating_rounded)
 
-        update_query = "UPDATE products_table SET `rating.count` = %(new_count)s, `rating.rate` = %(new_rating_rounded)s WHERE id = %(product_id)s"
+        update_query = "UPDATE products_table SET `rating.count` = %s, `rating.rate` = %s WHERE id = %s"
         cursor.execute(
             update_query,
-            {
-                "new_count": new_count,
-                "new_rating_rounded": new_rating_rounded,
-                "product_id": product_id,
-            },
+            (
+                new_count,
+                new_rating_rounded,
+                product_id,
+            ),
         )
+
         mysql.connection.commit()
         # check if updated correctly
-        cursor.execute(select_query, {"product_id": product_id})
+        cursor.execute(select_query, (product_id,))
         updatedRating = cursor.fetchone()
         updated_count = updatedRating[0]
         updated_rating = updatedRating[1]

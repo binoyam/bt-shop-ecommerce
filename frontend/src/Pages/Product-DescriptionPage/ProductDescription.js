@@ -6,9 +6,9 @@ import PlusIcon from "../../Assets/Images/icon-plus.svg";
 import MinusIcon from "../../Assets/Images/icon-minus.svg";
 import Arrow from "../../Assets/Images/arrow-left.svg";
 import StarIcon from "../../Assets/Images/star_icon.svg";
-import ProductRatingForm from "../../components/productRatingForm/productRatingForm";
+import ProductRating from "../../components/ProductRating/ProductRating";
 
-function ProductDescription({ products, addToCart, adminMode, submitRating }) {
+function ProductDescription({ products, addToCart, adminMode }) {
   // /* SELECTED PRODUCT STATE */
   /* SELECTED QUANTITY STATE */
   const [selectedProduct, setSelectedProduct] = useState([]);
@@ -88,7 +88,7 @@ function ProductDescription({ products, addToCart, adminMode, submitRating }) {
         Rate Product
       </button>
       {showRating && (
-        <ProductRatingForm productId={productId} setShowRating={setShowRating} />
+        <ProductRating productId={productId} setShowRating={setShowRating} />
       )}
     </div>
   );

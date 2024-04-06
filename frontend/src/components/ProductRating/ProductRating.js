@@ -1,9 +1,10 @@
-import "./ProductRatingForm.css";
 import { useState } from "react";
-import ThumbsUpIcon from "../../Assets/Images/thumbs_up.svg";
+import "./ProductRating.css";
 import ThumbsDownIcon from "../../Assets/Images/thumbs_down.svg";
-function ProductRatingForm({ productId, setShowRating }) {
-  const [rating, setRating] = useState(2.5);
+import ThumbsUpIcon from "../../Assets/Images/thumbs_up.svg";
+
+function ProductRating({ productId, setShowRating }) {
+  const [rating, setRating] = useState(null);
 
   const submitRating = async (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ function ProductRatingForm({ productId, setShowRating }) {
       console.log(response);
       if (response.ok) {
         console.log("Rating inserted successfully!");
-        setShowRating(false)
+        setShowRating(false);
       } else {
         throw new Error("Rating insertion failed.");
       }
@@ -42,7 +43,7 @@ function ProductRatingForm({ productId, setShowRating }) {
           min="0"
           max="5"
           step="0.1"
-          value={rating || "2.5"}
+          value={rating || ""}
           onChange={handleRatingChange}
         />
         <img className="thumbs_up" src={ThumbsUpIcon} alt="thumbs up" />
@@ -54,4 +55,4 @@ function ProductRatingForm({ productId, setShowRating }) {
   );
 }
 
-export default ProductRatingForm;
+export default ProductRating;
