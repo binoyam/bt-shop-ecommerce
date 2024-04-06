@@ -1,13 +1,12 @@
+import "./ProductDescription.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CartIcon from "../../Assets/Images/icon-cart-btn.svg";
 import PlusIcon from "../../Assets/Images/icon-plus.svg";
 import MinusIcon from "../../Assets/Images/icon-minus.svg";
 import Arrow from "../../Assets/Images/arrow-left.svg";
-import ThumbsUpIcon from "../../Assets/Images/thumbs_up.svg";
-import ThumbsDownIcon from "../../Assets/Images/thumbs_down.svg";
 import StarIcon from "../../Assets/Images/star_icon.svg";
-import "./ProductDescription.css";
+import ProductRatingForm from "../../components/productRatingForm/productRatingForm";
 
 function ProductDescription({ products, addToCart, adminMode, submitRating }) {
   // /* SELECTED PRODUCT STATE */
@@ -15,7 +14,6 @@ function ProductDescription({ products, addToCart, adminMode, submitRating }) {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [rating, setRating] = useState(null);
   const [showRating, setShowRating] = useState(false);
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
@@ -41,18 +39,7 @@ function ProductDescription({ products, addToCart, adminMode, submitRating }) {
       setQuantity(quantity - 1);
     }
   };
-  const handleRatingChange = (event) => {
-    setRating(event.target.value);
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setShowRating(false);
-    setRating("");
-    submitRating(rating, id);
-    alert("Thank you for your feedback!");
-  };
-  console.log("User rating:", rating, id);
-
+  
   const { image, title, price, description } = selectedProduct;
   // console.log(selectedProduct);
   return (
@@ -101,30 +88,7 @@ function ProductDescription({ products, addToCart, adminMode, submitRating }) {
         Rate Product
       </button>
       {showRating && (
-        <form onSubmit={handleSubmit} className="product_rating_form">
-          <label htmlFor="prd_rating">Rating: {rating} / 5</label>
-          <div className="rating_input">
-            <img
-              className="thumbs_down"
-              src={ThumbsDownIcon}
-              alt="thumbs down"
-            />
-            <input
-              id="prd_rating"
-              className="rating_range"
-              type="range"
-              min="0"
-              max="5"
-              step="0.1"
-              value={rating || ""}
-              onChange={handleRatingChange}
-            />
-            <img className="thumbs_up" src={ThumbsUpIcon} alt="thumbs up" />
-          </div>
-          <button className="submit_rate_btn" type="submit">
-            Submit
-          </button>
-        </form>
+        <ProductRatingForm productId={productId} setShowRating={setShowRating} />
       )}
     </div>
   );

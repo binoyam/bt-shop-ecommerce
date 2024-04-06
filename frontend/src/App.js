@@ -163,24 +163,7 @@ function App() {
       setOrderedItems(JSON.parse(storedOrders));
     }
   }, []);
-  const submitRating = async (rating, product_id) => {
-    try {
-      const response = await fetch("/api/rate_product", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ rating, product_id }),
-      });
-      if (response.ok) {
-        console.log("Rating inserted successfully!");
-      } else {
-        throw new Error("Rating insertion failed.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ 
   return (
     <div className="App">
       <Header
@@ -295,7 +278,6 @@ function App() {
                 addToCart={addToCart}
                 products={products}
                 adminMode={adminMode}
-                submitRating={submitRating}
               />
             }
           />

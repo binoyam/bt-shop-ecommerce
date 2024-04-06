@@ -8,52 +8,58 @@ mysql = MySQL()
 
 @rate_product_bp.route("/api/rate_product", methods=["POST"])
 def rate_product():
-    rating = request.json.get("rating")
-    product_id = request.json.get("product_id")
-    print(rating)
+    data = request.json
+    product_id = data.get("product_id")
+    rating = data.get("rating")
+    print(data)
     print(product_id)
+    print(rating)
     try:
         cursor = mysql.connection.cursor()
+        select_query = (
+            "SELECT `rating.count`, `rating.rate` FROM products_table WHERE id = %s"
+        )
 
-        # Select the row for the specific product
         cursor.execute(
-            "SELECT `rating.count`, `rating.rate` FROM products_table WHERE id = %s",
+            select_query,
             (product_id,),
         )
-        result = cursor.fetchone()
-        print(result)
-        current_count = result[0]
-        current_rating = result[1]
-        print(current_count)
-        print(current_rating)
+        prevRating = cursor.fetchone()
+        print(prevRating)
+        prev_count = prevRating[0]
+        prev_rating = prevRating[1]
+        print(prev_count)
+        print(prev_rating)
 
-        # Calculate the new rating count and average rating
-        new_count = current_count + 1
-        new_rating = (current_rating * current_count + rating) / new_count
+        new_count = prev_count + 1
+        new_rating = (prev_rating * prev_count + rating) / new_count
+        new_rating_rounded = round(new_rating, 1)
         print(new_count)
         print(new_rating)
-        # # Update the rating count and rating rate in the products table
-        # cursor.execute(
-        #     "UPDATE products SET rating_count = %s, rating_rate = %s WHERE product_id = %s",
-        #     (new_count, new_rating, product_id),
-        # )
+        print(new_rating_rounded)
 
-        # # Insert the new rating for the specific product
-        # cursor.execute(
-        #     "INSERT INTO ratings (rating_rate, product_id) VALUES (%s, %s)",
-        #     (rating["rate"], product_id),
-        # )
+        update_query = "UPDATE products_table SET `rating.count` = %(new_count)s, `rating.rate` = %(new_rating_rounded)s WHERE id = %(product_id)s"
+        cursor.execute(
+            update_query,
+            {
+                "new_count": new_count,
+                "new_rating_rounded": new_rating_rounded,
+                "product_id": product_id,
+            },
+        )
+        mysql.connection.commit()
+        # check if updated correctly
+        cursor.execute(select_query, {"product_id": product_id})
+        updatedRating = cursor.fetchone()
+        updated_count = updatedRating[0]
+        updated_rating = updatedRating[1]
+        print(updatedRating)
+        cursor.close()
 
-        # mysql.connection.commit()
-        # cursor.close()
-
-        # response = {
-        #     "current_rating": current_rating,
-        #     "new_rating": rating["rate"],
-        #     "average_rating": new_rating,
-        # }
-        response = {"isok": True}
-
-        return jsonify(response), 200
+        if updated_rating == new_rating_rounded and updated_count == new_count:
+            response = {"rateSubmited": True}
+        else:
+            response = {"rateSubmited": False}
+        return jsonify(response)
     except Exception as e:
         return str(e), 500
