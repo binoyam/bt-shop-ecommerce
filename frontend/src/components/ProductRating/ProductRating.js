@@ -3,9 +3,8 @@ import "./ProductRating.css";
 import ThumbsDownIcon from "../../Assets/Images/thumbs_down.svg";
 import ThumbsUpIcon from "../../Assets/Images/thumbs_up.svg";
 
-function ProductRating({ productId, setShowRating }) {
+function ProductRating({ productId, setShowRatingForm }) {
   const [rating, setRating] = useState(null);
-
   const submitRating = async (e) => {
     e.preventDefault();
     try {
@@ -20,7 +19,8 @@ function ProductRating({ productId, setShowRating }) {
 
       if (data.rateSubmited) {
         console.log("Rating inserted successfully!", data);
-        setShowRating(false);
+        setShowRatingForm(false);
+        alert("Thank you, your rating is submitted.");
       } else {
         throw new Error("Rating insertion failed.");
       }
@@ -44,7 +44,7 @@ function ProductRating({ productId, setShowRating }) {
           min="0"
           max="5"
           step="0.1"
-          value={rating || ""}
+          value={rating || "2.5"}
           onChange={handleRatingChange}
         />
         <img className="thumbs_up" src={ThumbsUpIcon} alt="thumbs up" />

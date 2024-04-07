@@ -14,7 +14,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [showRating, setShowRating] = useState(false);
+  const [showRatingForm, setShowRatingForm] = useState(false);
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
   useEffect(() => {
@@ -39,7 +39,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
       setQuantity(quantity - 1);
     }
   };
-  
+
   const { image, title, price, description } = selectedProduct;
   // console.log(selectedProduct);
   return (
@@ -81,14 +81,17 @@ function ProductDescription({ products, addToCart, adminMode }) {
         </div>
       </div>
       <button
-        onClick={() => setShowRating(!showRating)}
+        onClick={() => setShowRatingForm(!showRatingForm)}
         className="rate_prd_btn"
       >
         <img src={StarIcon} alt="star" />
         Rate Product
       </button>
-      {showRating && (
-        <ProductRating productId={productId} setShowRating={setShowRating} />
+      {showRatingForm && (
+        <ProductRating
+          productId={productId}
+          setShowRatingForm={setShowRatingForm}
+        />
       )}
     </div>
   );
