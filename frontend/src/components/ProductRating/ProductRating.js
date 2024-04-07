@@ -16,9 +16,10 @@ function ProductRating({ productId, setShowRating }) {
         },
         body: JSON.stringify({ product_id: parseInt(productId), rating }),
       });
-      console.log(response);
-      if (response.ok) {
-        console.log("Rating inserted successfully!");
+      const data = await response.json();
+
+      if (data.rateSubmited) {
+        console.log("Rating inserted successfully!", data);
         setShowRating(false);
       } else {
         throw new Error("Rating insertion failed.");

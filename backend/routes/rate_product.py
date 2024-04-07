@@ -11,9 +11,6 @@ def rate_product():
     data = request.json
     product_id = data.get("product_id")
     rating = float(data.get("rating"))
-    print(data)
-    print(type(product_id))
-    print(type(rating))
     try:
         cursor = mysql.connection.cursor()
         select_query = (
@@ -25,26 +22,22 @@ def rate_product():
             (product_id,),
         )
         rating_data = cursor.fetchone()
-        prev_count = rating_data[0] if rating_data else 0
-        prev_rating = rating_data[1] if rating_data else None
-        print(rating_data)
-        print(type(prev_count))
-        print(type(prev_rating))
+        prev_count = rating_data[0]
+        prev_rating = rating_data[1]
 
-        if prev_count == 0:
+        print(rating_data)
+        if prev_count is None:
+            prev_count = 0
             new_count = 1
         else:
             new_count = prev_count + 1
         if prev_rating is None:
+            prev_rating = float(0)
             new_rating = rating / new_count
         else:
             new_rating = (prev_rating * prev_count + rating) / new_count
 
         new_rating_rounded = round(new_rating, 1)
-
-        print(type(new_count))
-        print(new_rating)
-        print(new_rating_rounded)
 
         update_query = "UPDATE products_table SET `rating.count` = %s, `rating.rate` = %s WHERE id = %s"
         cursor.execute(
@@ -66,9 +59,9 @@ def rate_product():
         cursor.close()
 
         if updated_rating == new_rating_rounded and updated_count == new_count:
-            response = {"rateSubmited": True}
+            response_data = {"rateSubmited": True}
         else:
-            response = {"rateSubmited": False}
-        return jsonify(response)
+            response_data = {"rateSubmited": False}
+        return jsonify(response_data)
     except Exception as e:
         return str(e), 500
