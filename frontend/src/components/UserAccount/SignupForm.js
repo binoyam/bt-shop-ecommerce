@@ -39,7 +39,7 @@ function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
       .then((response) => response.json())
       .then((data) => {
         if (data && data.signupSuccess === "true") {
-          console.log(data);
+          // console.log(data);
           const customerData = {
             customerId: data.customerId,
             customerName: data.customerName,

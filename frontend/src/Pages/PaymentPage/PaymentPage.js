@@ -36,7 +36,9 @@ function PaymentPage({ customerData, isLoggedIn, orderedItems }) {
           </div>
         )}
         <ul className="ordered_prds_list">
-          <div className="list_header">You have ordered {orderedItems.length} items</div>
+          <div className="list_header">
+            You have ordered {orderedItems.length} items
+          </div>
           {orderedItems.map((item) => (
             <li key={item.orderId}>
               <div className="prdId">Product ID: {item.productId}</div>

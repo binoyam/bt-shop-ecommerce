@@ -6,12 +6,13 @@
   border-bottom-right-radius: 15px;
   background-color: #ffffff;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
 }
 .orders_info {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   background-color: #333;
 }
@@ -37,7 +38,7 @@
 .list_header {
   font-size: 1.2rem;
 }
-.prdprice{
+.prdprice {
   color: #333;
 }
 .ordered_prds_list li {
@@ -59,8 +60,8 @@
   color: cadetblue;
 }
 /* PAYMENT METHODS */
-.payment_wrapper{
-  width: 50%;
+.payment_wrapper {
+  width: 100%;
 }
 
 .payment-methods {

@@ -4,20 +4,18 @@
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #eee7e7fa;
-  border: 1px solid #ddd;
-  /* border-radius: 10px; */
+  background-color: #333333c9;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 9999;
-  box-shadow: 0px 0px 5px 1px #ed9121;
+  box-shadow: 0px 0px 5px 1px #000000;
 }
 .rated {
   display: none;
 }
 .product_rating_form label {
-  color: #333;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
 }
@@ -45,20 +43,22 @@
 }
 .submit_rate_btn {
   padding: 6px 15px;
-  background-color: #333;
+  background-color: #ed9121;
   color: #fff;
   font-size: 14px;
-  font-weight: 600;
-  border: 1px solid transparent;
+  font-weight: 700;
+  border: 1px solid #ffffff;
 }
-
+.submit_rate_btn:hover{
+  background-color: #000000;
+}
 .after_rating {
   position: absolute;
   padding: 20px 30px;
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
+  background-color: #33333394;
   text-align: center;
   z-index: 9999;
   color: #ffffff;
@@ -68,5 +68,9 @@
 @media only screen and (max-width: 500px) {
   .product_rating_form {
     min-width: 70%;
+  }
+  .after_rating{
+    min-width: 70%;
+
   }
 }

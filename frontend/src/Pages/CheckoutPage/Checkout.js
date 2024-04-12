@@ -34,7 +34,7 @@ function Checkout({
           </div>
         )}
         <div className="current-total-div">
-          <p className="current-total-pre">Total (before tax): </p>
+          <p className="current-total-pretax">Total (before tax): </p>
           <span className="current-total">${calculateTotal().toFixed(2)}</span>
         </div>
       </div>

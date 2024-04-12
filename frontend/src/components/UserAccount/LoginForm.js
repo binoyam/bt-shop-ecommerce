@@ -33,7 +33,7 @@ function LoginForm({
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data && data.loginSuccess === "true") {
           const { customerId, customerName, customerEmail, isAdmin } = data;
           const customerData = {

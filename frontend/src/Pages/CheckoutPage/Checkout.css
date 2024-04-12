@@ -32,8 +32,8 @@
 .checkout-amount {
   color: cadetblue;
 }
-.current-total-pre {
-  font-size: 18px;
+.current-total-pretax {
+  font-size: 16px;
 }
 /* LIST HEADER */
 .chk-out-list-header {
@@ -218,7 +218,7 @@
 
 @media only screen and (max-width: 760px) {
   .chk-out.cart-items-list {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
@@ -226,5 +226,16 @@
   .checkout-header {
     flex-direction: column;
     margin-bottom: 20px;
+  }
+  .payment,
+  .back-to-shop-btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .order-total {
+    color: #9e0000;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 }
