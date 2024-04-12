@@ -34,11 +34,41 @@ function App() {
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
   // console.log(cartItems);
-  /* FUNCTION TO FETCH PRODUCTS */
+  /*  FETCH PRODUCTS AND GET  CART DATA AND CUSTOMER DATA FROM LOCAL STORAGE */
   useEffect(() => {
     fetchProducts();
+    const storedCart = localStorage.getItem("cartItems");
+    const storedOrders = localStorage.getItem("orderedItems");
+    const storedCustomerData = localStorage.getItem("customerData");
+    if (storedCustomerData) {
+      const customerData = JSON.parse(storedCustomerData);
+      setCustomerData(customerData);
+      setIsLoggedIn(true);
+      setAdminMode(customerData.isAdmin === true);
+    }
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    }
+    if (storedOrders) {
+      setOrderedItems(JSON.parse(storedOrders));
+    }
   }, []);
-
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("/api/products");
+      if (response.ok) {
+        const data = await response.json();
+        setProducts(data);
+      } else {
+        const errorText = await response.text();
+        throw new Error(
+          `Request failed with status ${response.status}: ${errorText}`
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   /* FUNCTION TO TOGGLE CART POPUP */
   function toggleCartDropDown() {
     setIsCartOpen(!isCartOpen);
@@ -66,6 +96,7 @@ function App() {
       localStorage.setItem("cartItems", "");
     }
   };
+  /* FUNCTION: PLACE ORDER */
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
@@ -85,7 +116,7 @@ function App() {
         body: JSON.stringify({ customerData, cartItemData: cartItemData }),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (data && data.isOrderPlaced === "true") {
         console.log("Order placed succesfully:", data);
         const orderedItems = data.orderedItems;
@@ -102,24 +133,10 @@ function App() {
     }
   };
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch("/api/products");
-      if (response.ok) {
-        const data = await response.json();
-        setProducts(data);
-      } else {
-        const errorText = await response.text();
-        throw new Error(
-          `Request failed with status ${response.status}: ${errorText}`
-        );
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+
   /* FUNCTION TO ADD ITEMS TO CART */
   const addToCart = (product, quantity) => {
+    setIsCartOpen(true);
     const existingItem = cartItems.find((item) => item.id === product.id);
     if (existingItem) {
       const updatedCartItems = cartItems.map((item) =>
@@ -145,25 +162,7 @@ function App() {
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
-  /* STORE CART DATA AND CUSTOMER  DATA ON LOCAL STORAGE */
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cartItems");
-    const storedOrders = localStorage.getItem("orderedItems");
-    const storedCustomerData = localStorage.getItem("customerData");
-    if (storedCustomerData) {
-      const customerData = JSON.parse(storedCustomerData);
-      setCustomerData(customerData);
-      setIsLoggedIn(true);
-      setAdminMode(customerData.isAdmin === true);
-    }
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    }
-    if (storedOrders) {
-      setOrderedItems(JSON.parse(storedOrders));
-    }
-  }, []);
- 
+
   return (
     <div className="App">
       <Header

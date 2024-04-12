@@ -1,7 +1,7 @@
 import "./Cart.css";
 import RemoveIcon from "../../Assets/Images/icon-remove.svg";
 import { Link } from "react-router-dom";
-
+import closeIcon from "../../Assets/Images/close_btn.svg";
 function Cart({ cartItems, removeFromCart, closeCart }) {
   // console.log(cartItems);
   const handleCheckout = () => {
@@ -10,6 +10,9 @@ function Cart({ cartItems, removeFromCart, closeCart }) {
   return (
     <div className="cart-drop-down">
       <p className="cart-header">Cart</p>
+      <div onClick={closeCart} className="close_cart">
+        <img src={closeIcon} alt="close cart" />
+      </div>
       <div className="cart-content">
         {cartItems?.length > 0 ? (
           <ul className="cart-items-list">

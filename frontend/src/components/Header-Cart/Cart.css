@@ -14,7 +14,28 @@
   z-index: 9999;
   background-color: rgba(255, 255, 255);
 }
-
+/* CLOSE CART BUTTON */
+.close_cart {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 7px;
+  cursor: pointer;
+  background-color: #ed9121;
+  border-radius: 50%;
+  display: flex;
+  place-items: center;
+}
+.close_cart img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.close_cart:hover {
+  scale: 1.1;
+}
 /* CART HEADER TEXT */
 .cart-header {
   display: block;
