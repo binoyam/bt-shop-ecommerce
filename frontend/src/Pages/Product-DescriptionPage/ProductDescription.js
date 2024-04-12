@@ -15,6 +15,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [showRatingForm, setShowRatingForm] = useState(false);
+  
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
   useEffect(() => {
