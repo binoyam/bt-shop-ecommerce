@@ -9,7 +9,7 @@ import BitcoinForm from "../../components/PaymentForms/BitcoinForm";
 
 function PaymentPage({ customerData, isLoggedIn, orderedItems }) {
   const [selectedPayMethod, setSelectedPayMethod] = useState("creditcard");
-  console.log(orderedItems);
+  // console.log(orderedItems);
   // const TAX_RATE = 0.15;
   const calculateTotal = () => {
     let total = 0;
