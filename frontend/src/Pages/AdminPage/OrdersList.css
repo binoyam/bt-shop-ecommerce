@@ -14,15 +14,19 @@
 .sort_by_product_btn {
   padding: 6px;
   color: #000000;
-  background-color: #ffffff;
+  background-color: hsl(0, 0%, 100%);
   font-size: 0.8rem;
+  font-weight: 600;
   transition: all 0.3s ease;
-  border: none;
+  border: 1px solid black;
   box-shadow: 1px 1px 1px #000000;
   transition: all 0.3s ease-in-out;
 }
 .selected_sort {
   box-shadow: 1px 1px 1px #ed9121;
+  background-color:cadetblue ;
+  color:#ffff ;
+  border: 1px solid transparent;
 }
 .orders_by_user,
 .orders_by_product {

@@ -32,7 +32,7 @@ function ProductList({
         <AddProductForm closeForm={closeForm} addProduct={addProduct} />
       )}
 
-      {products.reverse().map((product) => (
+      {products.map((product) => (
         <ProductItem
           key={product.id}
           product={product}

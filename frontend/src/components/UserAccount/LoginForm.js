@@ -24,7 +24,6 @@ function LoginForm({
       console.log("Please fill in all fields");
       return;
     }
-    // Make API call to the Flask backend
     fetch("/api/login", {
       method: "POST",
       headers: {
@@ -50,7 +49,6 @@ function LoginForm({
         } else {
           console.log("Login unsuccessful:", data);
           setErrorMessage(true);
-          // alert("Login attempt failed: Incorrect Username or Password. Please try again.")
         }
       })
       .catch((error) => {

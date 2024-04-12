@@ -115,6 +115,7 @@ function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
       <div className="signup_form_group">
         <label htmlFor="gender">Gender</label>
         <select
+          className="gender_input"
           id="gender"
           name="gender"
           value={signupData.gender}

@@ -158,4 +158,16 @@
   .signup_btn {
     width: 100%;
   }
+  .login_success{
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  /* .logged_user{
+    font-size: 0.8rem;
+  }
+  .logout_btn {
+    font-size: 1rem;
+    padding: 0.6rem;
+  } */
 }

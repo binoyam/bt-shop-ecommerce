@@ -20,12 +20,38 @@
 .signup_form_group label {
   color: #000000;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.2rem;
 }
 .signup_form_group input {
+  font-size: 1rem;
+  font-weight: 600;
   padding: 0.3rem;
+  letter-spacing: 1px;
+  color: #333;
   background-color: #ffffff;
+  border: 1px solid #333;
+  outline: 1px solid transparent;
+}
+.signup_form_group input:focus {
+  border: 1px solid transparent;
+  outline: 1px solid #ed9121;
+}
+.gender_input {
+  padding: 0.3rem;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #333;
+  outline: 1px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.gender_input option {
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-bottom: 1px solid #333;
 }
 .signup_form_btn {
   padding: 0.3rem;

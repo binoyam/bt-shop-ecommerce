@@ -90,6 +90,7 @@
   justify-content: space-around;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+  z-index: 99;
 }
 .slider-item.active {
   opacity: 1;
