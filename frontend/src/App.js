@@ -122,7 +122,7 @@ function App() {
         const orderedItems = data.orderedItems;
         setOrderedItems(orderedItems);
         setCartItems([]);
-        console.log(orderedItems);
+        // console.log(orderedItems);
         localStorage.setItem("orderedItems", JSON.stringify(orderedItems));
         localStorage.setItem("cartItems", "");
       } else {
