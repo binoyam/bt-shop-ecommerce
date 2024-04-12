@@ -8,7 +8,7 @@ function Cart({ cartItems, removeFromCart, closeCart }) {
     closeCart();
   };
   return (
-    <div className="cart-drop-down show-cart">
+    <div className="cart-drop-down">
       <p className="cart-header">Cart</p>
       <div className="cart-content">
         {cartItems?.length > 0 ? (

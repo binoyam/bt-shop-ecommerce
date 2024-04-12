@@ -12,6 +12,7 @@
   text-align: left;
   cursor: pointer;
   z-index: 9;
+  border: 2px solid #000000;
   margin-bottom: 10px;
   position: relative; /* for view-details button*/
 }
@@ -19,7 +20,6 @@
   border-right: 2px solid #ddd;
 }
 .top-product-box:hover{
-  scale: 1.04;
   border: 2px solid #ed9121;
   z-index: 99;
 }
