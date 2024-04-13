@@ -37,10 +37,10 @@ app.register_blueprint(place_orders_bp)
 app.register_blueprint(rate_product_bp)
 # admin routes
 app.register_blueprint(users_bp)
-app.register_blueprint(orders_bp)
-app.register_blueprint(products_bp)
-app.register_blueprint(remove_order_bp)
 app.register_blueprint(remove_user_bp)
+app.register_blueprint(orders_bp)
+app.register_blueprint(remove_order_bp)
+app.register_blueprint(products_bp)
 app.register_blueprint(remove_product_bp)
 app.register_blueprint(add_product_bp)
 
