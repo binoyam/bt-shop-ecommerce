@@ -7,44 +7,47 @@ function OrdersList({ orders, removeOrder }) {
   const [filteredOrders, setFilteredOrders] = useState(orders);
   const [showUsers, setShowUsers] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
+  /* FUNCTION TO REMOVE ORDER FROM ORDERS ARRAY */
   const handleRemoveOrder = (orderId) => {
     removeOrder(orderId);
     setFilteredOrders(filteredOrders.filter((order) => order.id !== orderId));
   };
+  /* SORT ORDERS BY USERNAME OR PRODUCT NAME */
   const handleSort = (option) => {
     setSortBy(option);
     if (option === "userName") {
       setShowUsers(true);
-      setFilteredOrders(orderOwners);
       setShowProducts(false);
     } else if (option === "productName") {
       setShowUsers(false);
-      setFilteredOrders(orderedProducts);
       setShowProducts(true);
     } else {
       setShowUsers(false);
       setShowProducts(false);
-      setFilteredOrders(orders);
     }
   };
+  /* FILTER ALL ORDRES BY USERNAME  */
   const orderOwners = orders.filter(
     (order, index, self) =>
       self.findIndex((o) => o.user_name === order.user_name) === index
   );
+  /* FILTER ALL ORDRES BY PRODUCT  */
   const orderedProducts = orders.filter(
     (order, index, self) =>
       self.findIndex((o) => o.product_name === order.product_name) === index
   );
+  /* FUNCTION TO FILTER ORDERS BY PRODUCT NAME */
   const handleProductClick = (productName) => {
     const users = orders.filter((order) => order.product_name === productName);
     setFilteredOrders(users);
-    console.log(users);
+    // console.log(users);
   };
+  /* FUNCTION TO FILTER ORDERS BY USER NAME */
   const handleUserClick = (userName) => {
     const products = orders.filter((order) => order.user_name === userName);
     setFilteredOrders(products);
 
-    console.log(products);
+    // console.log(products);
   };
   // console.log(orderOwners);
   // console.log(orderedProducts);
@@ -96,7 +99,7 @@ function OrdersList({ orders, removeOrder }) {
           </div>
         </div>
       )}
-      {showProducts && (
+      {showProducts && sortBy === "productName" && (
         <ul className="orders_by_product">
           {orders.length !== 0 ? (
             <h4>Ordered Products</h4>

@@ -36,6 +36,8 @@
   outline: 1px solid transparent;
   color: #333;
   background-color: rgb(255, 255, 255);
+  margin-bottom: 5px;
+
 }
 .new_product_form_group textarea {
   max-height: 125px;
@@ -53,6 +55,7 @@
   background-color: #ed9121;
   border: none;
   outline: none;
+  margin-top: 10px;
 }
 .add_product_btn:hover{
     background-color: #24d62d;

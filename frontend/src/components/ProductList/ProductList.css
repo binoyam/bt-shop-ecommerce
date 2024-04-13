@@ -14,15 +14,16 @@
   text-align: center;
   padding: 20px;
   border: 1px solid #ddd;
-
   cursor: pointer;
   background-color: #ffffff;
 }
 .add_product_txt {
   font-size: 1.2rem;
   font-weight: 800;
-  margin: 1rem 0 2rem;
-  color: #333;
+  margin: 1rem 0;
+  color: #ffffff;
+  padding: 10px;
+  background-color: #01b801;
 }
 .add_product_icon {
   width: 60%;
@@ -34,7 +35,7 @@
     place-items: center;
   }
   .add_product_icon {
-    width: 40%;
-    height: 100px;
+    width: 60%;
+    height: 300px;
   }
 }

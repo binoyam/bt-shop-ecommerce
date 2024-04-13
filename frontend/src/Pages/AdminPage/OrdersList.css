@@ -37,6 +37,8 @@
   text-align: center;
   gap: 5px;
   margin: 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #ed9121;
 }
 .orders_by_user h4,
 .orders_by_product h4 {
@@ -45,20 +47,23 @@
 }
 .order_makers,
 .ordered_products {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content:center;
+  align-items: stretch;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
 }
 .order_maker,
 .order_product {
+  max-width: 30%;
   padding: 5px 10px;
   background-color: #ffffff;
   color: #ed9121;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 500;
+  font-size: 0.8rem;
   border: 1px solid #333;
+  line-height: 1;
 }
 .order_maker:focus,
 .order_product:focus {
@@ -74,6 +79,7 @@
 }
 .order {
   width: 100%;
+  max-width: 250px;
   border: 1px solid #ddd;
   padding: 10px;
   display: flex;
@@ -96,4 +102,9 @@
   background-color: #ffffff;
   color: red;
   border: 1px solid black;
+}
+@media only screen and (max-width: 500px) {
+  .order {
+    max-width: 100%;
+  }
 }
