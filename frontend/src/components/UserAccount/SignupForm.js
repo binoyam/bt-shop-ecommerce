@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignupForm.css";
-import closeIcon from "../../Assets/Images/close_btn.svg";
+import closeIcon from "../../Assets/close_btn.svg";
 function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
   const [errorMessage, setErrorMessage] = useState(false);
   const [signupData, setSignupData] = useState({

@@ -1,9 +1,9 @@
 import "./Header.css";
-import CartIcon from "../../Assets/Images/icon-cart.svg";
+import CartIcon from "../../Assets/icon-cart.svg";
 import Nav from "../Header-Nav/Nav";
 import Cart from "../Header-Cart/Cart";
-import UserIcon from "../../Assets/Images/avatar.svg";
-import adminIcon from "../../Assets/Images/adminIcon.svg";
+import UserIcon from "../../Assets/avatar.svg";
+import adminIcon from "../../Assets/adminIcon.svg";
 import UserAccountPopup from "../UserAccount/UserAccountPopup";
 import { Link } from "react-router-dom";
 

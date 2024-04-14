@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CartIcon from "../../Assets/Images/icon-cart-btn.svg";
+import CartIcon from "../../Assets/icon-cart-btn.svg";
 import "./TopProducts.css";
 
 function TopProducts({ product, addToCart }) {

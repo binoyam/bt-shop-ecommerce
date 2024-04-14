@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ProductItem.css";
-import CartIcon from "../../Assets/Images/icon-cart-btn.svg";
-import removeIcon from "../../Assets/Images/close_btn.svg";
+import CartIcon from "../../Assets/icon-cart-btn.svg";
+import removeIcon from "../../Assets/close_btn.svg";
 
 function ProductItem({ product, addToCart, adminMode, handleRemoveProduct }) {
   // console.log(adminMode);

@@ -1,6 +1,6 @@
 import ProductItem from "../Product-Item/ProductItem";
 import "./ProductList.css";
-import addIcon from "../../Assets/Images/add_icon.svg";
+import addIcon from "../../Assets/add_icon.svg";
 import { useState } from "react";
 import AddProductForm from "./AddProductForm";
 function ProductList({

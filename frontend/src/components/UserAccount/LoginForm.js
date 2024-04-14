@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import closeIcon from "../../Assets/Images/close_btn.svg";
+import closeIcon from "../../Assets/close_btn.svg";
 
 function LoginForm({
   updateUserStatus,

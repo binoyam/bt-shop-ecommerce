@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ProductRating.css";
-import ThumbsDownIcon from "../../Assets/Images/thumbs_down.svg";
-import ThumbsUpIcon from "../../Assets/Images/thumbs_up.svg";
+import ThumbsDownIcon from "../../Assets/thumbs_down.svg";
+import ThumbsUpIcon from "../../Assets/thumbs_up.svg";
 
 function ProductRating({ productId, setShowRatingForm }) {
   const [rating, setRating] = useState(2.5);

@@ -1,6 +1,7 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_mysqldb import MySQL
+from flask.helpers import send_from_directory
 
 # user routes
 from routes.auth import auth_bp
@@ -18,9 +19,20 @@ from routes.admin_routes.remove_user import remove_user_bp
 from routes.admin_routes.remove_product import remove_product_bp
 from routes.admin_routes.add_product import add_product_bp
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../frontend/build", static_url_path="")
 mysql = MySQL()
 CORS(app)
+
+
+@app.route("/api", methods=["GET"])
+@cross_origin()
+def index():
+    return {"deployment": "first try"}
+
+@app.route("/")
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 app.config["SECRET_KEY"] = "YOUR_SECRET_KEY"
@@ -48,4 +60,4 @@ app.register_blueprint(add_product_bp)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

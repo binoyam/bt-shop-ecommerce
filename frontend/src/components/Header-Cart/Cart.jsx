@@ -1,7 +1,7 @@
 import "./Cart.css";
-import RemoveIcon from "../../Assets/Images/icon-remove.svg";
+import RemoveIcon from "../../Assets/icon-remove.svg";
 import { Link } from "react-router-dom";
-import closeIcon from "../../Assets/Images/close_btn.svg";
+import closeIcon from "../../Assets/close_btn.svg";
 function Cart({ cartItems, removeFromCart, closeCart }) {
   // console.log(cartItems);
   const handleCheckout = () => {

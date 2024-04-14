@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Contact.css";
-import UserIcon from "../../Assets/Images/user-name-icon.svg";
-import EmailIcon from "../../Assets/Images/email-icon.svg";
-import MsgIcon from "../../Assets/Images/message-icon.svg";
+import UserIcon from "../../Assets/user-name-icon.svg";
+import EmailIcon from "../../Assets/email-icon.svg";
+import MsgIcon from "../../Assets/message-icon.svg";
 
 function Contact() {
   const [name, setName] = useState("");

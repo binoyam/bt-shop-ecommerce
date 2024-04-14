@@ -1,5 +1,5 @@
 import "./Checkout.css";
-import DeleteIcon from "../../Assets/Images/remove-item-icon.svg";
+import DeleteIcon from "../../Assets/remove-item-icon.svg";
 import { Link } from "react-router-dom";
 
 function Checkout({

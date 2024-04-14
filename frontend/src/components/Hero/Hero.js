@@ -1,9 +1,9 @@
 import "./Hero.css";
 import { Link } from "react-router-dom";
-import MensImg from "../../Assets/Images/mens-clothing-1.jpg";
-import WomensImg from "../../Assets/Images/womes-clothing.jpg";
-import ElectronicsImg from "../../Assets/Images/electronics-1.jpg";
-import JeweleryImg from "../../Assets/Images/jewelery-1.jpg";
+import MensImg from "../../Assets/mens-clothing-1.jpg";
+import WomensImg from "../../Assets/womes-clothing.jpg";
+import ElectronicsImg from "../../Assets/electronics-1.jpg";
+import JeweleryImg from "../../Assets/jewelery-1.jpg";
 
 function Hero() {
   return (

@@ -1,11 +1,11 @@
 import "./ProductDescription.css";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CartIcon from "../../Assets/Images/icon-cart-btn.svg";
-import PlusIcon from "../../Assets/Images/icon-plus.svg";
-import MinusIcon from "../../Assets/Images/icon-minus.svg";
-import Arrow from "../../Assets/Images/arrow-left.svg";
-import StarIcon from "../../Assets/Images/star_icon.svg";
+import CartIcon from "../../Assets/icon-cart-btn.svg";
+import PlusIcon from "../../Assets/icon-plus.svg";
+import MinusIcon from "../../Assets/icon-minus.svg";
+import Arrow from "../../Assets/arrow-left.svg";
+import StarIcon from "../../Assets/star_icon.svg";
 import ProductRating from "../../components/ProductRating/ProductRating";
 
 function ProductDescription({ products, addToCart, adminMode }) {

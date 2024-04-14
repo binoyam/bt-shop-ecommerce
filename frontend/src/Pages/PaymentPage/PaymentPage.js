@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./PaymentPage.css";
-import MasterCardLogo from "../../Assets/Images/mastercard-logo.svg";
-import PaypalLogo from "../../Assets/Images/paypal-logo.svg";
-import BitcoinLogo from "../../Assets/Images/bitcoin-logo.svg";
+import MasterCardLogo from "../../Assets/mastercard-logo.svg";
+import PaypalLogo from "../../Assets/paypal-logo.svg";
+import BitcoinLogo from "../../Assets/bitcoin-logo.svg";
 import CreditCardForm from "../../components/PaymentForms/CreditCardForm";
 import PayPalForm from "../../components/PaymentForms/PayPalForm";
 import BitcoinForm from "../../components/PaymentForms/BitcoinForm";

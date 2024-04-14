@@ -3,7 +3,7 @@ import { useState } from "react";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import { Link } from "react-router-dom";
-import closeIcon from "../../Assets/Images/close_btn.svg";
+import closeIcon from "../../Assets/close_btn.svg";
 function UserAccountPopup({
   toggleUserPopup,
   updateUserStatus,
