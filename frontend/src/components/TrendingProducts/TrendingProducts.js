@@ -20,7 +20,7 @@ function TrendingProducts({ products, addToCart }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % topProducts.length);
-    }, 3000);
+    }, 2000);
 
     return () => {
       clearInterval(interval);

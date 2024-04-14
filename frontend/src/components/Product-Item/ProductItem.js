@@ -4,7 +4,6 @@ import CartIcon from "../../Assets/icon-cart-btn.svg";
 import removeIcon from "../../Assets/close_btn.svg";
 
 function ProductItem({ product, addToCart, adminMode, handleRemoveProduct }) {
-  // console.log(adminMode);
   return (
     <article className="product-box">
       <h3 className="product-title">{product.title.slice(0, 20)}</h3>

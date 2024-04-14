@@ -7,7 +7,7 @@ place_orders_bp = Blueprint("place_orders", __name__)
 mysql = MySQL()
 
 
-@place_orders_bp.route("/api/place_order", methods=["POST"])
+@place_orders_bp.route("/api/place_orders", methods=["POST"])
 def place_order():
     data = request.json
     # print("data", data)
@@ -25,11 +25,11 @@ def place_order():
 
     if merged_items:
         response_data = {
-            "isOrderPlaced": "true",
+            "isOrderPlaced": True,
             "orderedItems": merged_items,
         }
     else:
         response_data = {
-            "isOrderPlaced": "false",
+            "isOrderPlaced": False,
         }
     return jsonify(response_data)

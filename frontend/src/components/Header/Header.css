@@ -9,7 +9,8 @@
   border-bottom-left-radius: 15px;
   width: 100%;
   height: 60px;
-  position: relative; /* for cart drop down/for menu button */
+  max-width: 1440px;
+  position: relative; /*for cart drop down/for menu button*/
 }
 .logo-link {
   max-width: 20%;

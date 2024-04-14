@@ -96,7 +96,7 @@ function App() {
       localStorage.setItem("cartItems", "");
     }
   };
-  /* FUNCTION: PLACE ORDER */
+  /* FUNCTION TO PLACE ORDER */
   const handleCustomerOrder = async () => {
     // console.log(cartItems);
     // console.log(customerData);
@@ -108,7 +108,7 @@ function App() {
     }));
     // console.log(cartItemData);
     try {
-      const response = await fetch("/api/place_order", {
+      const response = await fetch("/api/place_orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,7 +117,7 @@ function App() {
       });
       const data = await response.json();
       // console.log(data);
-      if (data && data.isOrderPlaced === "true") {
+      if (data && data.isOrderPlaced) {
         console.log("Order placed succesfully:", data);
         const orderedItems = data.orderedItems;
         setOrderedItems(orderedItems);
@@ -136,7 +136,7 @@ function App() {
 
   /* FUNCTION TO ADD ITEMS TO CART */
   const addToCart = (product, quantity) => {
-    setIsCartOpen(true);
+    // setIsCartOpen(true);
     const existingItem = cartItems.find((item) => item.id === product.id);
     if (existingItem) {
       const updatedCartItems = cartItems.map((item) =>
@@ -183,6 +183,7 @@ function App() {
       />
 
       <main className="main-content">
+        
         <Routes>
           <Route path="/admin" element={<AdminPage adminMode={adminMode} />} />
 
