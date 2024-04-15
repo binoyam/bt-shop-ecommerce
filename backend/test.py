@@ -24,15 +24,17 @@ mysql = MySQL()
 CORS(app)
 
 
+@app.route("/")
+@cross_origin()
+def serve():
+    # return send_from_directory(app.static_folder, "index.html")
+    return app.send_static_file("index.html")
+
+
 @app.route("/api", methods=["GET"])
 @cross_origin()
 def index():
     return {"deployment": "first try"}
-
-@app.route("/")
-@cross_origin()
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
 
 
 app.config["SECRET_KEY"] = "YOUR_SECRET_KEY"
