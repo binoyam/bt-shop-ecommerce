@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -33,7 +33,11 @@ function App() {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [orderedItems, setOrderedItems] = useState([]);
   const [adminMode, setAdminMode] = useState(false);
-  // console.log(cartItems);
+  /* SCROLL TO TOP ON ROUTE CHANGE */
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
   /*  FETCH PRODUCTS AND GET  CART DATA AND CUSTOMER DATA FROM LOCAL STORAGE */
   useEffect(() => {
     fetchProducts();
@@ -133,7 +137,6 @@ function App() {
     }
   };
 
-
   /* FUNCTION TO ADD ITEMS TO CART */
   const addToCart = (product, quantity) => {
     // setIsCartOpen(true);
@@ -183,7 +186,6 @@ function App() {
       />
 
       <main className="main-content">
-        
         <Routes>
           <Route path="/admin" element={<AdminPage adminMode={adminMode} />} />
 

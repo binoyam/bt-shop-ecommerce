@@ -15,6 +15,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [showRatingForm, setShowRatingForm] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const productId = parseInt(id);
   const foundProduct = products.find((product) => product.id === productId);
@@ -28,6 +29,11 @@ function ProductDescription({ products, addToCart, adminMode }) {
   const handleAddToCart = () => {
     addToCart(selectedProduct, quantity);
     setQuantity(1);
+    setIsAddedToCart(true);
+
+    setTimeout(() => {
+      setIsAddedToCart(false);
+    }, 5000);
   };
   /* FUNCTION FOR PLUS BUTTON / increase quantity*/
   const increaseQuantity = () => {
@@ -71,7 +77,7 @@ function ProductDescription({ products, addToCart, adminMode }) {
                 </button>
               </div>
               <button onClick={handleAddToCart} className="prd-add-to-cart">
-                Add to Cart
+              {isAddedToCart ? 'Added to Cart' : 'BUY NOW'}
                 <img src={CartIcon} alt="Cart" />
               </button>
               <Link to="/checkout" className="prd-desc-checkout-btn">
