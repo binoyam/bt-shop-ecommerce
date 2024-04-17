@@ -3,7 +3,7 @@ import "./HomePage.css";
 import Hero from "../../components/Hero/Hero";
 import TrendingProducts from "../../components/TrendingProducts/TrendingProducts";
 
-function HomePage({ products, addToCart }) {
+function HomePage({ products, addToCart, adminMode }) {
   return (
     <div className="home-page">
       <section className="home-page-header">
@@ -15,7 +15,7 @@ function HomePage({ products, addToCart }) {
 
       <Hero />
 
-      <TrendingProducts products={products} addToCart={addToCart} />
+      <TrendingProducts adminMode={adminMode} products={products} addToCart={addToCart} />
 
       <div id="categories" className="home-category-section">
         <h2 className="category-header">Categories</h2>

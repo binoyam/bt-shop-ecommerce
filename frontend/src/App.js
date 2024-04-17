@@ -192,12 +192,12 @@ function App() {
           <Route
             exact
             path="/"
-            element={<HomePage addToCart={addToCart} products={products} />}
+            element={<HomePage adminMode={adminMode} addToCart={addToCart} products={products} />}
           />
 
           <Route
             path="/home"
-            element={<HomePage addToCart={addToCart} products={products} />}
+            element={<HomePage adminMode={adminMode} addToCart={addToCart} products={products} />}
           />
 
           <Route

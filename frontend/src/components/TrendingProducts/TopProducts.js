@@ -3,7 +3,7 @@ import CartIcon from "../../Assets/icon-cart-btn.svg";
 import "./TopProducts.css";
 import { useState } from "react";
 
-function TopProducts({ product, addToCart }) {
+function TopProducts({ product, addToCart, adminMode }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -22,13 +22,13 @@ function TopProducts({ product, addToCart }) {
         alt={product.title}
       />
       <span className="top-product-price">${product.price}</span>
-      <button
+     {!adminMode && <button
         onClick={() => handleAddToCart(product)}
         className="top-add-to-cart-btn"
       >
         <img src={CartIcon} alt="Cart" />{" "}
         {isAddedToCart ? "Added to Cart" : "BUY NOW"}
-      </button>
+      </button>}
 
       <p className="top-product-description">
         {product.description.slice(0, 40)}...

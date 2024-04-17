@@ -197,7 +197,7 @@
 /* PRODUCT RATING */
 .rate_prd_btn{
   position: absolute;
-  top: 20%;
+  top: 10%;
   left:50% ;
   transform: translateX(-50%);
   padding: 7px 5px 5px;

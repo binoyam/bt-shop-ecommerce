@@ -122,7 +122,7 @@ function SignupForm({ updateUserStatus, setIsLoggedIn, toggleUserPopup }) {
           onChange={handleChange}
           required
         >
-          <option value="">Select Gender</option>
+          <option className="placeholder" value="">Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>

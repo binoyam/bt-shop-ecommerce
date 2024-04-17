@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TopProducts from "./TopProducts";
 
-function TrendingProducts({ products, addToCart }) {
+function TrendingProducts({ products, addToCart, adminMode }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [topProducts, setTopProducts] = useState([]);
   /* SORT PRODUCTS BY RATING/ FROM HIGHEST RATED TO LOWEST RATED*/
@@ -61,6 +61,7 @@ function TrendingProducts({ products, addToCart }) {
             key={product.id}
             product={product}
             addToCart={handleAddToCart}
+            adminMode={adminMode}
           />
         ))}
       </div>

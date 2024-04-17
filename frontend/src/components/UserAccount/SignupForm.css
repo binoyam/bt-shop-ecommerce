@@ -5,6 +5,10 @@
   gap: 1rem;
   position: relative;
 }
+::placeholder{
+  color: #ddd;
+}
+
 .error_message {
   color: red;
   font-size: 0.8rem;
@@ -39,7 +43,7 @@
 }
 .gender_input {
   padding: 0.3rem;
-  color: #333;
+  color: #a8a8a8;
   background-color: #ffffff;
   border: 1px solid #333;
   outline: 1px solid transparent;
@@ -54,9 +58,15 @@
   border-bottom: 1px solid #333;
 }
 .signup_form_btn {
-  padding: 0.3rem;
+  padding: 0.5rem;
   background-color: #000000;
   color: white;
   font-size: 1rem;
   font-weight: 700;
+  border: 1px solid transparent;
+  outline: none;
+}
+.signup_form_btn:hover {
+  background-color: #ed9121;
+  border: 1px solid #333;
 }
