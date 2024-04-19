@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c62a6d21.css",
-    "main.js": "/static/js/main.cb0b8c48.js",
+    "main.css": "/static/css/main.cbcf5d9d.css",
+    "main.js": "/static/js/main.41b5e1b8.js",
     "static/media/about-page-bg.jpg": "/static/media/about-page-bg.724f67d81c00d2548649.jpg",
     "static/media/about-page-bg-2.jpg": "/static/media/about-page-bg-2.ea6d86dc71ad6fd71788.jpg",
     "static/media/womes-clothing.jpg": "/static/media/womes-clothing.dfad0af549f2055e7f8e.jpg",
@@ -34,11 +34,11 @@
     "static/media/message-icon.svg": "/static/media/message-icon.604cabfebb2df0607117507ba0bd6e6f.svg",
     "static/media/close-for-menu.svg": "/static/media/close-for-menu.c0957ea6bedfa40a9f80256915033c09.svg",
     "static/media/icon-menu.svg": "/static/media/icon-menu.b2e59b5c0c3086d5e4b7ec69cc59a5b2.svg",
-    "main.c62a6d21.css.map": "/static/css/main.c62a6d21.css.map",
-    "main.cb0b8c48.js.map": "/static/js/main.cb0b8c48.js.map"
+    "main.cbcf5d9d.css.map": "/static/css/main.cbcf5d9d.css.map",
+    "main.41b5e1b8.js.map": "/static/js/main.41b5e1b8.js.map"
   },
   "entrypoints": [
-    "static/css/main.c62a6d21.css",
-    "static/js/main.cb0b8c48.js"
+    "static/css/main.cbcf5d9d.css",
+    "static/js/main.41b5e1b8.js"
   ]
 }
